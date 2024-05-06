@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WSF Events</title>
     <link rel="stylesheet" href="styles.css">
-    <style>
+        <style>
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
@@ -94,7 +94,7 @@
         .modal-content {
             background-color: #1c1c1c;
             padding: 20px;
-            width: 50%;
+            width: 90%;
             min-width: 300px;
             display: flex;
             flex-direction: column;
@@ -229,13 +229,31 @@
                 right: 0;
             }
             nav a {
-                display: block;
-                text-align: center;
+                display:block;
+                text-align:center;
                 padding: 15px;
                 border-top: 1px solid #2c2c2c;
             }
             .content-box {
                 flex-basis: 100%;
+            }
+            .event-container {
+                padding: 10px;
+            }
+            .event {
+                width: 100%;
+            }
+            .modal-content {
+                width: 95%;
+            }
+            .modal-body, .modal-header {
+                font-size: 18px;
+            }
+            .clock, .sort-container, .filter-container {
+                display: none;  // Adjust as necessary, could use dropdown or modal for these features
+            }
+            header {
+                flex-direction: column;
             }
         }
     </style>
