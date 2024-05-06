@@ -183,6 +183,14 @@
         </div>
     </div>
     <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
         const rolesData = {
             'President': { name: 'John Doe', desc: 'Leads the federation and oversees all functions.' },
             'Vice President': { name: 'Jane Doe', desc: 'Assists the President and steps in when the President is unavailable.' },
