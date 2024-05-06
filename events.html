@@ -437,6 +437,14 @@
             locationInfo.textContent = `Your location: ${position.coords.latitude.toFixed(2)}, ${position.coords.longitude.toFixed(2)}`;
         }
 
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
         document.addEventListener('DOMContentLoaded', function() {
             populateEvents();
             updateClock();
