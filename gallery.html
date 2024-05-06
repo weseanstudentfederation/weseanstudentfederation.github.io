@@ -47,11 +47,10 @@
         .gallery-header {
             text-align: center;
             font-size: 24px;
-            margin: 100px 0 20px; /* Adjust top margin to accommodate fixed header */
+            margin: 100px 0 20px;
         }
         .gallery-container {
-            flex: 1;
-            padding: 20px;
+            padding: 80px 20px 20px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
@@ -83,7 +82,7 @@
         }
         .modal-content {
             position: relative;
-            width: 70%;
+            width: 90%;
             max-width: 700px;
         }
         .modal-photo {
@@ -132,9 +131,6 @@
         }
         
         @media only screen and (max-width: 600px) {
-            .menu-icon {
-                display: block;
-            }
             nav {
                 flex-direction: column;
                 width: 100%;
@@ -144,6 +140,7 @@
                 top: 50px;
                 left: 0;
                 right: 0;
+                z-index: 1001; /* Ensure it's above other content */
             }
             nav a {
                 display: block;
@@ -151,8 +148,24 @@
                 padding: 15px;
                 border-top: 1px solid #2c2c2c;
             }
-            .content-box {
-                flex-basis: 100%;
+            .gallery-container {
+                padding: 80px 10px 10px; /* Adjust padding for smaller screens */
+            }
+            .photo {
+                width: 100%; /* Full width on smaller screens */
+                height: auto; /* Maintain aspect ratio */
+            }
+            .modal-content {
+                width: 95%; /* Use more screen space for modal */
+            }
+            .modal-photo {
+                cursor: auto; /* Disable cursor change on mobile */
+            }
+            .close, .zoom-in, .zoom-out {
+                top: 5px; /* Adjust control positions in modal */
+            }
+            .zoom-in, .zoom-out {
+                display: none; /* Optionally hide zoom controls on mobile */
             }
         }
     </style>
@@ -168,7 +181,6 @@
             <a href="#gallery" class="active">Gallery</a>
             <a href="#blog">Blog</a>
             <a href="#contact">Contact</a>
-            
         </nav>
     </header>
     <div class="gallery-header">Gallery</div>
@@ -187,8 +199,7 @@
     <footer>
         <p>© 2024 Wesean Student Federation</p>
     </footer>
-
-    <script>
+<script>
         let currentZoom = 1;
         let currentPage = 1;
 
