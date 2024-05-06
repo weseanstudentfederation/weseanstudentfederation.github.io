@@ -314,7 +314,7 @@
                 if (!isDeleting && txtIndex === phrases[currentPhrase].length) {
                     isDeleting = true;
                     setTimeout(type, 1500); // Increased pause on complete phrase for readability
-                } else if (isDeleting and txtIndex === 0) {
+                } else if (isDeleting && txtIndex === 0) {
                     currentPhrase++;
                     isDeleting = false;
                     setTimeout(type, 500); // Reduced delay on deleting for faster transition
