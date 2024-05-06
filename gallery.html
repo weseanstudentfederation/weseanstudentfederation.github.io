@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSF Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #121212;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo {
+            height: 50px;
+            margin-right: auto;
+        }
+        nav {
+            margin-left: auto;
+        }
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #FF4500;
+        }
+        .gallery-header {
+            text-align: center;
+            font-size: 24px;
+            margin: 100px 0 20px; /* Adjust top margin to accommodate fixed header */
+        }
+        .gallery-container {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+        }
+        .photo {
+            width: 200px;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            transition: transform 0.5s ease-in-out;
+            cursor: pointer;
+        }
+        .photo:hover {
+            transform: scale(1.1);
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1500;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            position: relative;
+            width: 70%;
+            max-width: 700px;
+        }
+        .modal-photo {
+            width: 100%;
+            height: auto;
+            cursor: grab;
+        }
+        .close, .zoom-in, .zoom-out {
+            position: absolute;
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: none;
+            padding: 10px;
+            top: 10px;
+        }
+        .zoom-in {
+            right: 50px;
+        }
+        .zoom-out {
+            right: 10px;
+        }
+        .close:hover, .zoom-in:hover, .zoom-out:hover {
+            color: #ff4500;
+        }
+        .pagination {
+            text-align: center;
+            padding: 20px;
+        }
+        .page-link {
+            color: #FFD700;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 18px;
+            transition: color 0.3s;
+        }
+        .page-link:hover {
+            color: #FF4500;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #121212;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="WSF Logo" class="logo">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#initiatives">Initiatives</a>
+            <a href="#events">Events</a>
+            <a href="#gallery" class="active">Gallery</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+            
+        </nav>
+    </header>
+    <div class="gallery-header">Gallery</div>
+    <div class="gallery-container">
+        <!-- Images will be populated by JavaScript -->
+    </div>
+    <div class="modal" id="myModal">
+        <img class="modal-content modal-photo" id="img01">
+        <button class="close" onclick="closeModal()">&times;</button>
+        <button class="zoom-in" onclick="zoomIn()">+</button>
+        <button class="zoom-out" onclick="zoomOut()">-</button>
+    </div>
+    <div class="pagination">
+        <!-- Pagination will be dynamically generated -->
+    </div>
+    <footer>
+        <p>© 2024 Wesean Student Federation</p>
+    </footer>
+
+    <script>
+        let currentZoom = 1;
+        let currentPage = 1;
+
+        function populateImages() {
+            const imageUrls = [
+                'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202003/CORORNA.png?size=690:388',
+                'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202112/2_1200x768.jpeg?size=690:388',
+                'https://globalvoices.org/wp-content/uploads/2013/04/imposition-of-hindi.jpg',
+                // Add more image URLs as needed
+            ];
+            const container = document.querySelector('.gallery-container');
+            container.innerHTML = ''; // Clear existing images
+            imageUrls.forEach((url, index) => {
+                if (index < currentPage * 12 && index >= (currentPage - 1) * 12) {
+                    const div = document.createElement('div');
+                    div.className = 'photo';
+                    div.style.backgroundImage = `url('${url}')`;
+                    div.onclick = function() { openModal(this.style.backgroundImage); };
+                    container.appendChild(div);
+                }
+            });
+            updatePagination(imageUrls.length);
+        }
+
+        function openModal(bgImage) {
+            var modal = document.getElementById('myModal');
+            var modalImg = document.getElementById('img01');
+            modal.style.display = "flex";
+            modalImg.src = bgImage.slice(5, -2); // Remove 'url(' at the start and ')' at the end
+            modalImg.style.transform = 'scale(1)';
+            currentZoom = 1;
+        }
+
+        function closeModal() {
+            var modal = document.getElementById('myModal');
+            modal.style.display = "none";
+        }
+
+        function zoomIn() {
+            currentZoom += 0.1;
+            document.getElementById('img01').style.transform = 'scale(' + currentZoom + ')';
+        }
+
+        function zoomOut() {
+            if (currentZoom > 1) {
+                currentZoom -= 0.1;
+                document.getElementById('img01').style.transform = 'scale(' + currentZoom + ')';
+            }
+        }
+
+        function updatePagination(totalImages) {
+            const pages = Math.ceil(totalImages / 12);
+            const paginationContainer = document.querySelector('.pagination');
+            paginationContainer.innerHTML = '';
+            for (let i = 1; i <= pages; i++) {
+                const link = document.createElement('a');
+                link.className = 'page-link';
+                link.textContent = i;
+                link.onclick = function() { changePage(i); };
+                paginationContainer.appendChild(link);
+            }
+        }
+
+        function changePage(pageNum) {
+            if (currentPage !== pageNum) {
+                currentPage = pageNum;
+                populateImages(); // Reload images based on the new page number
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateImages();
+            document.addEventListener('keydown', function(event) {
+                if (event.key === '+') zoomIn();
+                if (event.key === '-') zoomOut();
+            });
+        });
+    </script>
+</body>
+</html>
