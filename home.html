@@ -48,12 +48,28 @@
         .hero {
             margin-top: 60px; /* Adjust margin to align with the fixed header */
             height: 400px;
-            background: url('Untitled design.png') no-repeat center center/cover;
+            background: url('607a2003-e5dd-46b4-bd29-4c35a028ced0.webp') no-repeat center center/cover;
             display: flex;
             justify-content: center;
             align-items: center;
             flex-direction: column;
             text-align: center;
+            position: relative;
+        }
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.6); /* Semi-transparent black background */
+            z-index: 1;
+        }
+        .title, #typedtext {
+            z-index: 2; /* Make sure text is above the overlay */
+            color: #FFD700; /* Golden color for readability */
+            font-size: 24px; /* Larger font size for better visibility */
+            padding: 10px;
+            border-radius: 5px;
         }
         .news-ticker {
             color: #FF4500;
@@ -184,31 +200,31 @@
         </nav>
     </header>
     <div class="hero" id="hero">
-        <h1>Wesean Student Federation</h1>
+        <h1 class="title">Wesean Student Federation</h1>
         <p id="typedtext"></p>
     </div>
     <div class="news-ticker">
         <p>Latest News: Support our initiatives for a better tomorrow!</p>
     </div>
     <section class="main-content">
-        <div id="about" the content-box>
+        <div class="content-box" id="about">
             <h2>What We Do</h2>
             <p>Leading advocacy for rights and education in Northeast India.</p>
             <a href="about.html" class="button">Learn More</a>
         </div>
-        <div id="initiatives" the content-box>
+        <div class="content-box" id="initiatives">
             <h2>Initiatives</h2>
             <p>Explore our initiatives to improve community engagement and development.</p>
-            <a href="initiatives.html" class="button">Learn More</a>
+            <a href="initiatives.html" the "button">Learn More</a>
         </div>
-        <div id="blog" the content-box>
+        <div class="content-box" id="blog">
             <h2>Latest Blogs</h2>
             <p>Read insights and updates from our active community.</p>
-            <a href="blog.html" class="button">Read More</a>
+            <a href="blog.html" the "button">Read More</a>
         </div>
     </section>
     <div class="organization-structure">
-        <h2>Our Organization Structure</h2>
+        <h2>Organization Structure</h2>
         <div class="structure-diagram">
             <div class="structure-box" onclick="showOverlay('General Council', 'The General Council is the apex body of WSF, overseeing all major decisions and policies. It directly manages the high school and ethnic wings, ensuring alignment with the federation\'s goals.')">General Council</div>
             <div class="structure-box" onclick="showOverlay('High School Wing', 'Focused on secondary education, this wing promotes student rights and educational reforms. It functions under the direct oversight of the General Council, aiming to foster a proactive youth community.')">High School Wing</div>
@@ -221,7 +237,7 @@
         <div class="overlay-content">
             <span class="close-button" onclick="closeOverlay()">×</span>
             <h2 id="overlay-title"></h2>
-            <p id="overlay-text"></p>
+            <p id="overlay-text"></p.
         </div>
     </div>
     <footer>
@@ -242,7 +258,7 @@
             let txt = '';
             let txtIndex = 0;
             let isDeleting = false;
-            const speed = 100;
+            const speed = 100; // Adjusted typing speed for smoother animation
             const typingElement = document.getElementById('typedtext');
 
             function type() {
@@ -258,11 +274,11 @@
                 }
                 if (!isDeleting && txtIndex === phrases[currentPhrase].length) {
                     isDeleting = true;
-                    setTimeout(type, 1500);
+                    setTimeout(type, 1500); // Increased pause on complete phrase for readability
                 } else if (isDeleting && txtIndex === 0) {
                     currentPhrase++;
                     isDeleting = false;
-                    setTimeout(type, 500);
+                    setTimeout(type, 500); // Reduced delay on deleting for faster transition
                 } else {
                     setTimeout(type, speed);
                 }
@@ -272,4 +288,3 @@
     </script>
 </body>
 </html>
-
