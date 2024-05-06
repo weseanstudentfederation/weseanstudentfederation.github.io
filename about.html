@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Wesean Student Federation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Arial', sans-serif;
@@ -115,3 +122,102 @@
             border: none;
         }
     </style>
+</head>
+<body onkeydown="return (event.ctrlKey && event.keyCode === 80) ? false : true">
+    <header>
+        <img src="logo.png" alt="WSF Logo" style="height: 50px;">
+        <nav style="margin-left: auto;">
+            <a href="home.html">Home</a> |
+            <a href="about.html" class="active">About Us</a> |
+            <a href="events.html">Events</a> |
+            <a href="blog.html">Blog</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="section fancy-text">
+            <!-- Preamble -->
+            <p>We, the students of Wesea (Western SouthEast Asia), coming together from the diverse regions of Northeast India and Northern parts of West Bengal, Chittagong, Mymensingh, parts of Sylhet in Bangladesh, and Kachin, Chin, and Naga areas of Myanmar, united by our common heritage and aspirations, solemnly resolve to form the Wesean Student Federation, otherwise known as the WSF. This federation stands as a beacon of unity, integrity, and fraternity among all Wesean students. Guided by the undying spirit of solidarity, we dedicate ourselves to protecting indigenous rights, promoting our rich Wesean culture, and enhancing the educational and intellectual prowess of our student body.</p>
+            <p>Resolved to dismantle the barriers of ethnonationalism and internal discord, we pledge to uphold the values of unity and integrity, fostering an environment where every voice is heard and valued. We commit to standing against all forms of division and strife among Weseans, ensuring a cohesive and harmonious community.</p>
+            <p>Through this federation, we vow to champion the collective interests of Wesean students, safeguarding our traditions and rights while paving the way for a future replete with academic excellence and cultural prosperity. On this historic day, the 17th of April 2024, we adopt, enact, and give to ourselves this constitution, binding ourselves to these principles for the advancement and unity of all Weseans.</p>
+        </section>
+        <section class="section">
+            <h2>About Us</h2>
+            <p>The Wesean Student Federation (WSF) is headquartered in Shillong, a symbolic site as the former capital of the Northeast Presidency under British administration. Our federation strives to empower students through advocacy, education, and leadership across the Wesea region.</p>
+        </section>
+        <section class="section map-container">
+            <img src="map.png" alt="Regions Served Map" class="map">
+            <div class="region-text">
+                <h2>Regions Served</h2>
+                <ul>
+                    <li>Northeast India, including the Gorkha and Koch areas of West Bengal</li>
+                    <li>Bangladesh: Chittagong, Sylhet, Mymensingh</li>
+                    <li>Myanmar: Kachin-Chin and Naga areas</li>
+                </ul>
+            </div>
+        </section>
+        <section class="section">
+            <h2>General Council</h2>
+            <p>Our leadership team includes:</p>
+            <div id="roles">
+                <!-- Example roles with pop-up functionality for details will be populated here by the script below -->
+            </div>
+        </section>
+        <section class="section">
+            <h2>Our Constitution</h2>
+            <iframe src="constitution.pdf"></iframe>
+        </section>
+        <section class="section">
+            <h2>History of the Wesean Student Federation</h2>
+            <p>The Wesean Student Federation was created by Rajen Monseng Borborua, an Ahom high schooler from Tezpur. With mentorship and guidance from Luhng Kokai, this website serves as a platform to unite and empower students across Wesea.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Wesean Student Federation</p>
+    </footer>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="roleTitle"></h2>
+            <p id="roleDescription"></p>
+        </div>
+    </div>
+    <script>
+        const rolesData = {
+            'President': { name: 'John Doe', desc: 'Leads the federation and oversees all functions.' },
+            'Vice President': { name: 'Jane Doe', desc: 'Assists the President and steps in when the President is unavailable.' },
+            'Secretary-General': { name: 'Alice Smith', desc: 'Responsible for the overall administration and day-to-day operations.' },
+            'Secretary - Education': { name: 'Bob Johnson', desc: 'Focuses on educational programs and initiatives.' },
+            'Cultural Secretary': { name: 'Chloe Brown', desc: 'Promotes cultural awareness and organizes cultural events.' },
+            'Speaker': { name: 'David Wilson', desc: 'Facilitates meetings and public speaking events.' },
+            'Treasurer': { name: 'Eve Miller', desc: 'Manages finances and budgeting for the federation.' },
+            'Publicity and Information/Media & Press': { name: 'Frank White', desc: 'Handles all media relations and publicity campaigns.' },
+            'Public Relations Officer': { name: 'Grace Lee', desc: 'Manages external relations and partnership opportunities.' }
+        };
+        const rolesElement = document.getElementById('roles');
+        Object.keys(rolesData).forEach(role => {
+            const roleDiv = document.createElement('div');
+            roleDiv.innerHTML = `<span class="role-name">${role}</span>: <span class="person-name">${rolesData[role].name}</span>`;
+            roleDiv.style.cursor = 'pointer';
+            roleDiv.style.padding = '5px';
+            roleDiv.style.marginTop = '5px';
+            roleDiv.style.background = '#444';
+            roleDiv.style.borderRadius = '5px';
+            roleDiv.onclick = () => {
+                showModal(role, rolesData[role].desc);
+            };
+            rolesElement.appendChild(roleDiv);
+        });
+
+        function showModal(role, description) {
+            document.getElementById('roleTitle').textContent = role;
+            document.getElementById('roleDescription').textContent = description;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
