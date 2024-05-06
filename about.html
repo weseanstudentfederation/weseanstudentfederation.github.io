@@ -51,19 +51,22 @@
         .map-container {
             display: flex;
             align-items: center;
-            clear: both;
+            justify-content: center;
+            flex-wrap: wrap; /* Allow items to wrap on smaller screens */
         }
+        
         .map {
-            width: 40%;
-            height: auto;
+            max-width: 40%;
+            height: auto; /* Maintain aspect ratio */
             border-radius: 8px;
-            float: left; /* Align map to the left */
             margin-right: 20px; /* Space between map and text */
         }
+        
         .region-text {
-            width: 60%;
-            float: left;
+            max-width: 60%;
         }
+        
+        
         h1, h2, .fancy-text {
             color: #FFD700;
         }
@@ -121,6 +124,13 @@
             height: 600px; /* Increased height for better visibility */
             border: none;
         }
+        @media screen and (max-width: 768px) {
+            .map, .region-text {
+                max-width: 100%; /* Full width on smaller screens */
+                margin-right: 0; /* Remove margin between items on smaller screens */
+            }
+        }
+
     </style>
 </head>
 <body onkeydown="return (event.ctrlKey && event.keyCode === 80) ? false : true">
@@ -145,7 +155,7 @@
             <h2>About Us</h2>
             <p>The Wesean Student Federation (WSF) is headquartered in Shillong, a symbolic site as the former capital of the Northeast Presidency under British administration. Our federation strives to empower students through advocacy, education, and leadership across the Wesea region.</p>
         </section>
-        <section class="section map-container">
+        <div class="map-container">
             <img src="map.png" alt="Regions Served Map" class="map">
             <div class="region-text">
                 <h2>Regions Served</h2>
@@ -155,7 +165,7 @@
                     <li>Myanmar: Kachin-Chin and Naga areas</li>
                 </ul>
             </div>
-        </section>
+        </div>
         <section class="section">
             <h2>General Council</h2>
             <p>Our leadership team includes:</p>
