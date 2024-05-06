@@ -45,6 +45,12 @@
         nav a:hover {
             color: #FF4500;
         }
+        .menu-icon {
+            display: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+        }
         .hero {
             margin-top: 60px; /* Adjust margin to align with the fixed header */
             height: 400px;
@@ -184,11 +190,36 @@
             font-size: 20px;
             cursor: pointer;
         }
+        @media only screen and (max-width: 600px) {
+            .menu-icon {
+                display: block;
+            }
+            nav {
+                flex-direction: column;
+                width: 100%;
+                display: none;
+                background: #121212;
+                position: absolute;
+                top: 50px;
+                left: 0;
+                right: 0;
+            }
+            nav a {
+                display: block;
+                text-align: center;
+                padding: 15px;
+                border-top: 1px solid #2c2c2c;
+            }
+            .content-box {
+                flex-basis: 100%;
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <img src="logo.png" alt="WSF Logo" class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
             <a href="#hero">Home</a>
             <a href="about.html">About</a>
@@ -215,12 +246,12 @@
         <div class="content-box" id="initiatives">
             <h2>Initiatives</h2>
             <p>Explore our initiatives to improve community engagement and development.</p>
-            <a href="initiatives.html" the "button">Learn More</a>
+            <a href="initiatives.html" class="button">Learn More</a>
         </div>
         <div class="content-box" id="blog">
             <h2>Latest Blogs</h2>
             <p>Read insights and updates from our active community.</p>
-            <a href="blog.html" the "button">Read More</a>
+            <a href="blog.html" class="button">Read More</a>
         </div>
     </section>
     <div class="organization-structure">
@@ -237,13 +268,21 @@
         <div class="overlay-content">
             <span class="close-button" onclick="closeOverlay()">×</span>
             <h2 id="overlay-title"></h2>
-            <p id="overlay-text"></p.
+            <p id="overlay-text"></p>
         </div>
     </div>
     <footer>
         <p>© 2024 Wesean Student Federation. All rights reserved. Follow us on <a href="https://www.instagram.com/weseanstudentfederation/">Instagram</a>.</p>
     </footer>
     <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
         function showOverlay(title, text) {
             document.getElementById('overlay-title').textContent = title;
             document.getElementById('overlay-text').textContent = text;
@@ -275,7 +314,7 @@
                 if (!isDeleting && txtIndex === phrases[currentPhrase].length) {
                     isDeleting = true;
                     setTimeout(type, 1500); // Increased pause on complete phrase for readability
-                } else if (isDeleting && txtIndex === 0) {
+                } else if (isDeleting and txtIndex === 0) {
                     currentPhrase++;
                     isDeleting = false;
                     setTimeout(type, 500); // Reduced delay on deleting for faster transition
