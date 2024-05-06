@@ -7,50 +7,40 @@
     <style>
         body {
             font-family: 'Arial', sans-serif;
-            background-color: #282828; /* dark background for golden text */
-            color: #FFD700; /* golden text */
+            background-color: #282828;
+            color: #FFD700;
             margin: 0;
             padding: 0;
-            overflow-y: auto; /* Enable scrolling */
+            overflow-y: auto;
         }
-        header {
-            background-color: #121212; /* darker shade for header */
-            color: #fff;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 60px; /* define height for the header */
-            z-index: 1000; /* ensure it stays on top */
-        }
-        footer {
+        header, footer {
             background-color: #121212;
             color: #fff;
-            padding: 20px;
+            padding: 10px 20px;
             text-align: center;
             position: fixed;
             left: 0;
             right: 0;
-            bottom: 0;
-            height: 40px; /* define height for the footer */
             z-index: 1000;
         }
+        header {
+            top: 0;
+        }
+        footer {
+            bottom: 0;
+        }
         main {
-            padding: 80px 20px 60px; /* more top padding to avoid header overlap */
+            padding: 80px 20px 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 60px; /* push down to avoid header */
-            margin-bottom: 40px; /* push up to avoid footer */
+            margin-top: 60px;
+            margin-bottom: 40px;
         }
         .section {
             margin-top: 20px;
             width: 80%;
-            background: #333; /* dark sections for contrast */
+            background: #333;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 20px;
@@ -67,25 +57,26 @@
             height: auto;
             border-radius: 8px;
         }
-        h1, h2 {
-            color: #FFD700; /* golden headers */
+        h1, h2, .fancy-text {
+            color: #FFD700;
         }
-        iframe {
-            width: 100%;
-            height: 500px;
-            border: none;
+        .fancy-text {
+            font-size: 20px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 20px;
         }
         nav a {
-            color: #FFD700; /* golden color for links */
+            color: #FFD700;
             text-decoration: none;
             padding: 5px 10px;
             transition: color 0.3s;
         }
         nav a:hover {
-            color: #FFA500; /* orange on hover */
+            color: #FFA500;
         }
         nav .active {
-            color: #FF4500; /* red for active page */
+            color: #FF4500;
         }
         .modal {
             display: none;
@@ -111,6 +102,12 @@
             cursor: pointer;
             color: #FF4500;
         }
+        .role-name {
+            color: #FF4500; /* Position color */
+        }
+        .person-name {
+            color: #FFD700; /* Person name color */
+        }
     </style>
 </head>
 <body>
@@ -120,12 +117,16 @@
             <a href="home.html">Home</a> |
             <a href="about.html" class="active">About Us</a> |
             <a href="events.html">Events</a> |
-            <a href="gallery.html">Gallery</a> |
             <a href="blog.html">Blog</a> |
             <a href="contact.html">Contact</a>
         </nav>
     </header>
     <main>
+        <section class="section fancy-text">
+            <p>We, the students of Wesea (Western SouthEast Asia), coming together from the diverse regions of Northeast India and Northern parts of West Bengal, Chittagong, Mymensingh, parts of Sylhet in Bangladesh, and Kachin, Chin, and Naga areas of Myanmar, united by our common heritage and aspirations, solemnly resolve to form the Wesean Student Federation, otherwise known as the WSF. This federation stands as a beacon of unity, integrity, and fraternity among all Wesean students. Guided by the undying spirit of solidarity, we dedicate ourselves to protecting indigenous rights, promoting our rich Wesean culture, and enhancing the educational and intellectual prowess of our student body.</p>
+            <p>Resolved to dismantle the barriers of ethnonationalism and internal discord, we pledge to uphold the values of unity and integrity, fostering an environment where every voice is heard and valued. We commit to standing against all forms of division and strife among Weseans, ensuring a cohesive and harmonious community.</p>
+            <p>Through this federation, we vow to champion the collective interests of Wesean students, safeguarding our traditions and rights while paving the way for a future replete with academic excellence and cultural prosperity. On this historic day, the 17th of April 2024, we adopt, enact, and give to ourselves this constitution, binding ourselves to these principles for the advancement and unity of all Weseans.</p>
+        </section>
         <section class="section">
             <h2>About Us</h2>
             <p>The Wesean Student Federation (WSF) is headquartered in Shillong, a symbolic site as the former capital of the Northeast Presidency under British administration. Our federation strives to empower students through advocacy, education, and leadership across the Wesea region.</p>
@@ -150,11 +151,11 @@
         </section>
         <section class="section">
             <h2>Our Constitution</h2>
-            <iframe src="Constitution.pdf"></iframe>
+            <iframe src="constitution.pdf"></iframe>
         </section>
         <section class="section">
-            
-            <p>The website for the Wesean Student Federation was created by Rajen Monseng Borborua, an Ahom high schooler from Tezpur. With mentorship and guidance from Luhng Kokai, this website serves as a platform to unite and empower students across Wesea.</p>
+            <h2>History of the Wesean Student Federation</h2>
+            <p>The Wesean Student Federation was created by Rajen Monseng Borborua, an Ahom high schooler from Tezpur. With mentorship and guidance from Luhng Kokai, this website serves as a platform to unite and empower students across Wesea.</p>
         </section>
     </main>
     <footer>
@@ -169,27 +170,27 @@
     </div>
     <script>
         const rolesData = {
-            'President': 'Leads the federation and oversees all functions.',
-            'Vice President': 'Assists the President and steps in when the President is unavailable.',
-            'Secretary-General': 'Responsible for the overall administration and day-to-day operations.',
-            'Secretary - Education': 'Focuses on educational programs and initiatives.',
-            'Cultural Secretary': 'Promotes cultural awareness and organizes cultural events.',
-            'Speaker': 'Facilitates meetings and public speaking events.',
-            'Treasurer': 'Manages finances and budgeting for the federation.',
-            'Publicity and Information/Media & Press': 'Handles all media relations and publicity campaigns.',
-            'Public Relations Officer': 'Manages external relations and partnership opportunities.'
+            'President': { name: 'John Doe', desc: 'Leads the federation and oversees all functions.' },
+            'Vice President': { name: 'Jane Doe', desc: 'Assists the President and steps in when the President is unavailable.' },
+            'Secretary-General': { name: 'Alice Smith', desc: 'Responsible for the overall administration and day-to-day operations.' },
+            'Secretary - Education': { name: 'Bob Johnson', desc: 'Focuses on educational programs and initiatives.' },
+            'Cultural Secretary': { name: 'Chloe Brown', desc: 'Promotes cultural awareness and organizes cultural events.' },
+            'Speaker': { name: 'David Wilson', desc: 'Facilitates meetings and public speaking events.' },
+            'Treasurer': { name: 'Eve Miller', desc: 'Manages finances and budgeting for the federation.' },
+            'Publicity and Information/Media & Press': { name: 'Frank White', desc: 'Handles all media relations and publicity campaigns.' },
+            'Public Relations Officer': { name: 'Grace Lee', desc: 'Manages external relations and partnership opportunities.' }
         };
         const rolesElement = document.getElementById('roles');
         Object.keys(rolesData).forEach(role => {
             const roleDiv = document.createElement('div');
-            roleDiv.textContent = role;
+            roleDiv.innerHTML = `<span class="role-name">${role}</span>: <span class="person-name">${rolesData[role].name}</span>`;
             roleDiv.style.cursor = 'pointer';
             roleDiv.style.padding = '5px';
             roleDiv.style.marginTop = '5px';
             roleDiv.style.background = '#444';
             roleDiv.style.borderRadius = '5px';
             roleDiv.onclick = () => {
-                showModal(role, rolesData[role]);
+                showModal(role, rolesData[role].desc);
             };
             rolesElement.appendChild(roleDiv);
         });
