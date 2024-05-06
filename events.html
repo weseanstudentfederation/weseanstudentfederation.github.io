@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WSF Events</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1c1c1c;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #121212;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+        .logo {
+            height: 50px;
+            margin-right: auto;
+        }
+        nav {
+            margin-left: auto;
+        }
+        nav a {
+            color: #FFD700;
+            text-decoration: none;
+            padding: 10px;
+            font-size: 16px;
+            transition: color 0.3s;
+        }
+        nav a:hover, nav a.active {
+            color: #FF4500;
+        }
+        .events-header {
+            text-align: center;
+            font-size: 24px;
+            margin: 100px 0 20px;
+        }
+        .event-container {
+            flex: 1;
+            padding: 80px 20px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            overflow-y: auto;
+            margin-bottom: 60px;
+        }
+        .event {
+            width: 300px;
+            border: 1px solid #FFD700;
+            padding: 10px;
+            cursor: pointer;
+        }
+        .event img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .event-title {
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .event-desc {
+            font-size: 14px;
+            color: #CCC;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1500;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #1c1c1c;
+            padding: 20px;
+            width: 50%;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+        }
+        .modal-header {
+            font-size: 22px;
+            color: #FFD700;
+        }
+        .modal-body {
+            margin-top: 20px;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .modal-details {
+            margin-bottom: 10px;
+        }
+        .modal-image {
+            width: 100%;
+        }
+        .close {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            color: #fff;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: #FF4500;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #121212;
+            width: 100%;
+            bottom: 0;
+            position: fixed;
+        }
+        .sort-container {
+            position: fixed;
+            right: 20px;
+            top: 180px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .sort-button {
+            background: #333;
+            color: #FFD700;
+            border: none;
+            padding: 10px;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        .sort-button:hover {
+            background: #444;
+        }
+        .clock {
+            position: fixed;
+            right: 20px;
+            top: 80px;
+            width: 150px;
+            padding: 10px;
+            background-color: #333;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #FFD700;
+            font-size: 16px;
+        }
+        .clock-time {
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+        .clock-date {
+            font-size: 14px;
+        }
+        .filter-container {
+            position: fixed;
+            right: 20px;
+            top: 120px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .filter-input {
+            margin-bottom: 10px;
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.3);
+            color: white;
+        }
+        .filter-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .filter-button {
+            padding: 8px 20px;
+            border-radius: 5px;
+            border: none;
+            background-color: #FFD700;
+            color: #333;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .filter-button:hover {
+            background-color: #FF4500;
+        }
+        .location-info {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="WSF Logo" class="logo">
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="#about">About</a>
+            <a href="#initiatives">Initiatives</a>
+            <a href="#events" class="active">Events</a>
+          <a href="gallery.html">Gallery</a>
+            <a href="#blog">Blog</a>
+            <a href="#contact">Contact</a>
+        </nav>
+    </header>
+    <h2 class="events-header">Events</h2>
+    <div class="filter-container">
+        <input type="date" id="dateFilter" class="filter-input" placeholder="Date">
+        <input type="text" id="locationFilter" class="filter-input" placeholder="Location">
+        <button class="filter-button" onclick="filterEvents()">Apply Filters</button>
+        <div class="location-info" id="locationInfo"></div>
+    </div>
+    <div class="event-container"></div>
+    <div class="modal" id="eventModal">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <div class="modal-content">
+            <div class="modal-header" id="modalHeader"></div>
+            <img src="" alt="Event Poster" class="modal-image">
+            <div class="modal-body">
+                <p id="modalDetails"></p>
+                <p id="modalPartner"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </div>
+    <div class="clock" id="clock"></div>
+    <footer>
+        <p>© 2024 Wesean Student Federation</p>
+    </footer>
+    <script>
+        const eventsData = [
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            {
+                title: "Wesea Meitei-Kuki Unity March",
+                location: "Wesea Town Square",
+                date: "2024-04-30", // Ensure date format is YYYY-MM-DD for input[type=date]
+                image: "https://dashwire.com/wp-content/uploads/2022/11/bigstock-People-Planning-Concept-Entre-327380749-1.jpg",
+                shortDesc: "Join us in a march for unity between the Meitei and Kuki communities.",
+                longDesc: "The Wesea Meitei-Kuki Unity March aims to foster peace and cooperation between the Meitei and Kuki communities. The event will feature speeches from community leaders, cultural performances, and a solidarity march.",
+                details: "April 30, 2024 | 10:00 AM | Wesea Town Square",
+                partner: "Partnering with: Local Community Leaders",
+                poster: "https://spotme.com/wp-content/uploads/2020/07/Hero-1.jpg"
+            },
+            // Add more event data as needed
+        ];
+
+        function populateEvents(filteredEvents = eventsData) {
+            const container = document.querySelector('.event-container');
+            container.innerHTML = ''; // Clear previous entries
+            filteredEvents.forEach(event => {
+                const eventDiv = document.createElement('div');
+                eventDiv.className = 'event';
+                eventDiv.innerHTML = `
+                    <img src="${event.image}" alt="${event.title}">
+                    <div class="event-title">${event.title}</div>
+                    <div class="event-desc">${event.shortDesc}</div>
+                `;
+                eventDiv.onclick = function() { openModal(event); };
+                container.appendChild(eventDiv);
+            });
+        }
+
+        function openModal(event) {
+            const modal = document.getElementById('eventModal');
+            document.getElementById('modalHeader').textContent = event.title;
+            const modalImg = document.querySelector('.modal-image');
+            modalImg.src = event.poster; // Set unique poster for each event
+            document.getElementById('modalDetails').textContent = event.details;
+            document.getElementById('modalPartner').textContent = event.partner;
+            document.getElementById('modalDescription').textContent = event.longDesc;
+            modal.style.display = "flex";
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('eventModal');
+            modal.style.display = "none";
+        }
+
+        function filterEvents() {
+            const dateFilter = document.getElementById('dateFilter').value;
+            const locationFilter = document.getElementById('locationFilter').value.toLowerCase();
+            const filteredEvents = eventsData.filter(event => {
+                const eventDate = new Date(event.date).toISOString().split('T')[0]; // Convert date to ISO string for consistent comparison
+                return (eventDate === dateFilter || !dateFilter) &&
+                       (event.location.toLowerCase().includes(locationFilter) || !locationFilter);
+            });
+            populateEvents(filteredEvents);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const clock = document.getElementById('clock');
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            clock.innerHTML = `
+                <div class="clock-time">${now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second: '2-digit', hour12: false})}</div>
+                <div class="clock-date">${now.toLocaleDateString('en-US', options)}</div>
+            `;
+            setTimeout(updateClock, 1000); // Update the clock every second
+        }
+
+        function getLocation() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+                console.log("Geolocation is not supported by this browser.");
+            }
+        }
+
+        function showPosition(position) {
+            const locationInfo = document.getElementById('locationInfo');
+            locationInfo.textContent = `Your location: ${position.coords.latitude.toFixed(2)}, ${position.coords.longitude.toFixed(2)}`;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateEvents();
+            updateClock();
+            getLocation();
+        });
+    </script>
+</body>
+</html>
