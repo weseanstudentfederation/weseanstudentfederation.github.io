@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Wesean Student Federation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282828; /* dark background for golden text */
+            color: #FFD700; /* golden text */
+            margin: 0;
+            padding: 0;
+            overflow-y: auto; /* Enable scrolling */
+        }
+        header {
+            background-color: #121212; /* darker shade for header */
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 60px; /* define height for the header */
+            z-index: 1000; /* ensure it stays on top */
+        }
+        footer {
+            background-color: #121212;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            height: 40px; /* define height for the footer */
+            z-index: 1000;
+        }
+        main {
+            padding: 80px 20px 60px; /* more top padding to avoid header overlap */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 60px; /* push down to avoid header */
+            margin-bottom: 40px; /* push up to avoid footer */
+        }
+        .section {
+            margin-top: 20px;
+            width: 80%;
+            background: #333; /* dark sections for contrast */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        .map-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .map {
+            width: 50%;
+            height: auto;
+            border-radius: 8px;
+        }
+        h1, h2 {
+            color: #FFD700; /* golden headers */
+        }
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: none;
+        }
+        nav a {
+            color: #FFD700; /* golden color for links */
+            text-decoration: none;
+            padding: 5px 10px;
+            transition: color 0.3s;
+        }
+        nav a:hover {
+            color: #FFA500; /* orange on hover */
+        }
+        nav .active {
+            color: #FF4500; /* red for active page */
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 1001;
+            align-items: center;
+            justify-content: center;
+        }
+        .modal-content {
+            background: #333;
+            padding: 20px;
+            border-radius: 8px;
+            width: 300px;
+            color: #FFD700;
+        }
+        .close {
+            float: right;
+            cursor: pointer;
+            color: #FF4500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="WSF Logo" style="height: 50px;">
+        <nav style="margin-left: auto;">
+            <a href="home.html">Home</a> |
+            <a href="about.html" class="active">About Us</a> |
+            <a href="events.html">Events</a> |
+            <a href="blog.html">Blog</a> |
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <main>
+        <section class="section">
+            <h2>About Us</h2>
+            <p>The Wesean Student Federation (WSF) is headquartered in Shillong, a symbolic site as the former capital of the Northeast Presidency under British administration. Our federation strives to empower students through advocacy, education, and leadership across the Wesea region.</p>
+        </section>
+        <section class="section map-container">
+            <div>
+                <h2>Regions Served</h2>
+                <ul>
+                    <li>Northeast India, including the Gorkha and Koch areas of West Bengal</li>
+                    <li>Bangladesh: Chittagong, Sylhet, Mymensingh</li>
+                    <li>Myanmar: Kachin-Chin and Naga areas</li>
+                </ul>
+            </div>
+            <img src="map.png" alt="Regions Served Map" class="map">
+        </section>
+        <section class="section">
+            <h2>General Council</h2>
+            <p>Our leadership team includes:</p>
+            <div id="roles">
+                <!-- Example roles with pop-up functionality for details will be populated here by the script below -->
+            </div>
+        </section>
+        <section class="section">
+            <h2>Our Constitution</h2>
+            <iframe src="constitution.pdf"></iframe>
+        </section>
+        <section class="section">
+            <h2>History of the Wesean Student Federation</h2>
+            <p>The Wesean Student Federation was created by Rajen Monseng Borborua, an Ahom high schooler from Tezpur. With mentorship and guidance from Luhng Kokai, this website serves as a platform to unite and empower students across Wesea.</p>
+        </section>
+    </main>
+    <footer>
+        <p>© 2024 Wesean Student Federation</p>
+    </footer>
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <h2 id="roleTitle"></h2>
+            <p id="roleDescription"></p>
+        </div>
+    </div>
+    <script>
+        const rolesData = {
+            'President': 'Leads the federation and oversees all functions.',
+            'Vice President': 'Assists the President and steps in when the President is unavailable.',
+            'Secretary-General': 'Responsible for the overall administration and day-to-day operations.',
+            'Secretary - Education': 'Focuses on educational programs and initiatives.',
+            'Cultural Secretary': 'Promotes cultural awareness and organizes cultural events.',
+            'Speaker': 'Facilitates meetings and public speaking events.',
+            'Treasurer': 'Manages finances and budgeting for the federation.',
+            'Publicity and Information/Media & Press': 'Handles all media relations and publicity campaigns.',
+            'Public Relations Officer': 'Manages external relations and partnership opportunities.'
+        };
+        const rolesElement = document.getElementById('roles');
+        Object.keys(rolesData).forEach(role => {
+            const roleDiv = document.createElement('div');
+            roleDiv.textContent = role;
+            roleDiv.style.cursor = 'pointer';
+            roleDiv.style.padding = '5px';
+            roleDiv.style.marginTop = '5px';
+            roleDiv.style.background = '#444';
+            roleDiv.style.borderRadius = '5px';
+            roleDiv.onclick = () => {
+                showModal(role, rolesData[role]);
+            };
+            rolesElement.appendChild(roleDiv);
+        });
+
+        function showModal(role, description) {
+            document.getElementById('roleTitle').textContent = role;
+            document.getElementById('roleDescription').textContent = description;
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+    </script>
+</body>
+</html>
