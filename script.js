@@ -23,7 +23,7 @@ function showWelcomeScreen() {
 
 function createFloatingElements() {
     const elementsContainer = document.getElementById('floating-elements');
-    const items = ['book.png', 'pen.png', 'flag.png']; // Add paths to icons or images
+    const items = ['book.png', 'pen.png', ]; // Add paths to icons or images
     for (let i = 0; i < 30; i++) {
         let item = document.createElement('div');
         item.classList.add('floating-item');
