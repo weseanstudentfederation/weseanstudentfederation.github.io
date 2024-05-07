@@ -17,20 +17,15 @@
             transition: background 1s;
         }
 
-        .container {
+        .container, .welcome-screen {
             text-align: center;
             max-width: 300px;
+            color: white; /* Ensures text color is white for welcome screen */
         }
 
         img {
             width: 100px;
             margin-bottom: 20px;
-            animation: rotateLogo 2s linear infinite;
-        }
-
-        @keyframes rotateLogo {
-            from { transform: rotate(0deg); }
-            to { transform: rotate(360deg); }
         }
 
         .progress-container {
