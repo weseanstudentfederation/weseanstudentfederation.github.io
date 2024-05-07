@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wesean Student Federation - Initiatives</title>
+    <style>
+        :root {
+            --main-bg-color: #000; /* Black for Night Mode */
+            --text-color: #FFD700; /* Gold */
+            --tile-bg-color: #333; /* Dark gray */
+            --hover-bg-color: #444; /* Darker gray for hover effect */
+            --light-bg-color: #E8F5E9; /* Light green for Light Mode */
+            --light-text-color: #004D40; /* Deep green for Light Mode */
+            --text-bg-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
+            --light-text-bg-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            background-color: var(--main-bg-color);
+            color: var(--text-color);
+            transition: background-color 0.3s, color 0.3s;
+        }
+        body.light-mode {
+            background-color: var(--light-bg-color);
+            color: var(--light-text-color);
+        }
+        nav {
+            background-color: #000;
+            color: var(--text-color);
+            padding: 10px 20px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            width: 100%;
+            position: fixed;
+            top: 0;
+            z-index: 1000;
+        }
+        nav img {
+            position: absolute;
+            left: 10px;
+            height: 40px;
+            vertical-align: middle;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-left: 15px;
+        }
+        nav ul li a {
+            color: inherit;
+            text-decoration: none;
+            padding: 10px;
+        }
+        .container {
+            padding: 100px 20px 20px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            transition: all 0.3s ease;
+        }
+        .tile {
+            flex: 1 1 200px;
+            margin: 10px;
+            background: var(--tile-bg-color);
+            border-radius: 8px;
+            overflow: hidden;
+            transition: transform 0.3s ease, background 0.3s;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+        }
+        .tile:hover {
+            background: var(--hover-bg-color);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .tile img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .text {
+            padding: 15px;
+            display: none;
+            background-color: var(--text-bg-color);
+            transition: opacity 0.5s ease;
+            color: var(--text-color);
+        }
+        body.light-mode .text {
+            background-color: var(--light-text-bg-color);
+            color: var(--light-text-color);
+        }
+        .tile h2 {
+            margin-top: 0;
+        }
+        .active {
+            flex: 3 1 400px; /* Larger size when active */
+        }
+        #theme-toggler {
+            position: fixed;
+            top: 60px;
+            right: 20px;
+            cursor: pointer;
+            padding: 10px;
+            background: var(--tile-bg-color);
+            color: var(--text-color);
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        @media (max-width: 768px) {
+            .tile { width: calc(50% - 40px); }
+        }
+        @media (max-width: 480px) {
+            .tile { width: calc(100% - 40px); }
+            nav ul { margin: 0; }
+            nav ul li { display: block; margin: 5px 0; }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <img src="logo.png" alt="WSF Logo">
+        <ul>
+            <li><a href="home.html">Home</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="initiatives.html">Initiatives</a></li>
+            <li><a href="events.html">Events</a></li>
+            <li><a href="gallery.html">Gallery</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+    <div id="theme-toggler" onclick="toggleTheme()">Switch to Night Mode</div>
+    <div class="container" id="tiles-container"></div>
+    <script>
+        const tilesData = [
+            {
+                image: "https://akm-img-a-in.tosshub.com/indiatoday/dolphin-story_647_122917102127_0.jpg?VersionId=hMgshwR9T09VLHeSeuLkZJsG8.9iU8IV",
+                title: "Wildlife Conservation",
+                description: "Focus on preserving biodiversity in Northeast India. This initiative promotes sustainable practices and collaborates with local communities to protect endangered species."
+            },
+            {
+                image: "https://thumbs.dreamstime.com/b/initiative-word-concepts-banner-business-success-startup-launch-smart-goals-achieving-isolated-lettering-typography-idea-178583996.jpg",
+                title: "Cultural Education",
+                description: "Enhance understanding and appreciation of diverse cultures through educational programs. This includes workshops, seminars, and community events that celebrate cultural diversity."
+            },
+            {
+                image: "https://s26162.pcdn.co/wp-content/uploads/2021/03/olaser_libraries.jpg",
+                title: "Library Development",
+                description: "Build libraries to promote literacy and education across communities. This initiative emphasizes the importance of community engagement and education outreach to foster a love of reading and knowledge."
+            }
+        ];
+
+        function generateTiles() {
+            const container = document.getElementById('tiles-container');
+            tilesData.forEach((tile, index) => {
+                const tileElement = document.createElement('div');
+                tileElement.className = 'tile';
+                tileElement.onclick = () => toggleDescription(index);
+                tileElement.innerHTML = `
+                    <img src="${tile.image}" alt="${tile.title}">
+                    <div class="text">
+                        <h2>${tile.title}</h2>
+                        <p>${tile.description}</p>
+                    </div>
+                `;
+                container.appendChild(tileElement);
+            });
+        }
+
+        function toggleDescription(index) {
+            var tiles = document.querySelectorAll('.tile');
+            tiles.forEach((tile, i) => {
+                if (i === index) {
+                    tile.classList.toggle('active');
+                    var text = tile.querySelector('.text');
+                    text.style.display = tile.classList.contains('active') ? 'block' : 'none';
+                    text.style.opacity = tile.classList.contains('active') ? 1 : 0;
+                } else {
+                    tile.classList.remove('active');
+                    var text = tile.querySelector('.text');
+                    text.style.display = 'none';
+                }
+            });
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            body.classList.toggle('light-mode');
+            const themeToggler = document.getElementById('theme-toggler');
+            themeToggler.textContent = body.classList.contains('light-mode') ? 'Switch to Night Mode' : 'Switch to Light Mode';
+        }
+
+        window.onload = generateTiles;
+    </script>
+</body>
+</html>
