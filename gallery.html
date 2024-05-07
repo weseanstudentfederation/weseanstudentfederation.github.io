@@ -33,6 +33,7 @@
         }
         nav {
             margin-left: auto;
+            display: flex;
         }
         nav a {
             color: #FFD700;
@@ -77,37 +78,35 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0, 0, 0, 0.8);
-            justify-content: center;
             align-items: center;
+            justify-content: center;
         }
         .modal-content {
             position: relative;
+            background: white;
             width: 90%;
             max-width: 700px;
+            padding: 20px;
+            color: black;
         }
         .modal-photo {
             width: 100%;
             height: auto;
-            cursor: grab;
         }
-        .close, .zoom-in, .zoom-out {
-            position: absolute;
-            color: #aaa;
+        .close {
+            position: fixed;
+            right: 20px;
+            top: 20px;
+            z-index: 1600; /* Ensure it's above the modal content */
+            color: white;
             font-size: 28px;
             font-weight: bold;
             cursor: pointer;
             background-color: rgba(0, 0, 0, 0.5);
             border: none;
             padding: 10px;
-            top: 10px;
         }
-        .zoom-in {
-            right: 50px;
-        }
-        .zoom-out {
-            right: 10px;
-        }
-        .close:hover, .zoom-in:hover, .zoom-out:hover {
+        .close:hover {
             color: #ff4500;
         }
         .pagination {
@@ -129,12 +128,10 @@
             padding: 20px;
             background-color: #121212;
         }
-        
         @media only screen and (max-width: 600px) {
             nav {
                 flex-direction: column;
                 width: 100%;
-                display: none;
                 background: #121212;
                 position: absolute;
                 top: 50px;
@@ -143,7 +140,7 @@
                 z-index: 1001; /* Ensure it's above other content */
             }
             nav a {
-                display: block;
+                display:block;
                 text-align: center;
                 padding: 15px;
                 border-top: 1px solid #2c2c2c;
@@ -164,8 +161,19 @@
             .close, .zoom-in, .zoom-out {
                 top: 5px; /* Adjust control positions in modal */
             }
-            .zoom-in, .zoom-out {
-                display: none; /* Optionally hide zoom controls on mobile */
+            .hamburger {
+                display: block;
+                position: absolute;
+                right: 20px;
+                top: 15px;
+                cursor: pointer;
+                font-size: 30px;
+                color: white;
+            }
+        }
+        @media only screen and (min-width: 601px) {
+            .hamburger {
+                display: none; /* Hide hamburger menu on larger screens */
             }
         }
     </style>
@@ -173,6 +181,7 @@
 <body>
     <header>
         <img src="logo.png" alt="WSF Logo" class="logo">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
         <nav>
             <a href="home.html">Home</a>
             <a href="about.html">About</a>
@@ -188,10 +197,10 @@
         <!-- Images will be populated by JavaScript -->
     </div>
     <div class="modal" id="myModal">
-        <img class="modal-content modal-photo" id="img01">
+        <div class="modal-content">
+            <img class="modal-photo" id="img01">
+        </div>
         <button class="close" onclick="closeModal()">&times;</button>
-        <button class="zoom-in" onclick="zoomIn()">+</button>
-        <button class="zoom-out" onclick="zoomOut()">-</button>
     </div>
     <div class="pagination">
         <!-- Pagination will be dynamically generated -->
@@ -199,16 +208,16 @@
     <footer>
         <p>© 2024 Wesean Student Federation</p>
     </footer>
-<script>
+    <script>
         let currentZoom = 1;
         let currentPage = 1;
-
         function populateImages() {
             const imageUrls = [
-                'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202003/CORORNA.png?size=690:388',
-                'https://akm-img-a-in.tosshub.com/indiatoday/images/story/202112/2_1200x768.jpeg?size=690:388',
-                'https://globalvoices.org/wp-content/uploads/2013/04/imposition-of-hindi.jpg',
-                // Add more image URLs as needed
+                'https://preview.redd.it/students-of-northeast-india-v0-5bws9lh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=280f7a558616bcab23c2db3f906e0fcc3a966794',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://lh3.googleusercontent.com/proxy/EcrLsdxpY9jStZVdOPvVXw8uYFqfsEP1JCJVYL2o1NAaWun8LAc2-HiRddIshQw4_ZesvE_MPPhBTzR4lt1T-f4VzFlZlWrsKmOw7oHmlPfSAeO0IS6SY6bxNmUvmzs',
+                'https://www.bnionline.net/sites/bnionline.net/files/styles/bni-detail-image/public/news-images/chin_ygn.jpg?itok=uZGa-I7h',
             ];
             const container = document.querySelector('.gallery-container');
             container.innerHTML = ''; // Clear existing images
@@ -223,7 +232,6 @@
             });
             updatePagination(imageUrls.length);
         }
-
         function openModal(bgImage) {
             var modal = document.getElementById('myModal');
             var modalImg = document.getElementById('img01');
@@ -232,59 +240,11 @@
             modalImg.style.transform = 'scale(1)';
             currentZoom = 1;
         }
-
         function closeModal() {
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
         }
-
-        function zoomIn() {
-            currentZoom += 0.1;
-            document.getElementById('img01').style.transform = 'scale(' + currentZoom + ')';
-        }
-
-        function zoomOut() {
-            if (currentZoom > 1) {
-                currentZoom -= 0.1;
-                document.getElementById('img01').style.transform = 'scale(' + currentZoom + ')';
-            }
-        }
-
-        function updatePagination(totalImages) {
-            const pages = Math.ceil(totalImages / 12);
-            const paginationContainer = document.querySelector('.pagination');
-            paginationContainer.innerHTML = '';
-            for (let i = 1; i <= pages; i++) {
-                const link = document.createElement('a');
-                link.className = 'page-link';
-                link.textContent = i;
-                link.onclick = function() { changePage(i); };
-                paginationContainer.appendChild(link);
-            }
-        }
-
-        function changePage(pageNum) {
-            if (currentPage !== pageNum) {
-                currentPage = pageNum;
-                populateImages(); // Reload images based on the new page number
-            }
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            populateImages();
-            document.addEventListener('keydown', function(event) {
-                if (event.key === '+') zoomIn();
-                if (event.key === '-') zoomOut();
-            });
-        });
-        function toggleMenu() {
-            const nav = document.querySelector('nav');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-            } else {
-                nav.style.display = 'flex';
-            }
-        }
+        document.addEventListener('DOMContentLoaded', populateImages);
     </script>
 </body>
 </html>
