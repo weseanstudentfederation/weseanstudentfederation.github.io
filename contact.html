@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - Wesean Student Federation</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap">
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyALqyPhsTcrPpntpyBDVVgHgJsmTFNEts8&callback=initMap" async defer></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1a1a1a; /* dark background */
+            color: #d4af37; /* golden text */
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #333; /* darker shade */
+            color: #d4af37; /* golden text */
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+        }
+        nav {
+            display: none;
+        }
+        /* Other styles remain the same */
+
+        textarea {
+            width: 100%;
+            padding: 12px;
+            margin-top: 5px;
+            border: 2px solid #333;
+            background: #333; /* dark input fields */
+            color: #d4af37; /* golden text */
+            border-radius: 6px;
+            resize: none; /* Prevent resizing */
+        }
+
+    /* Rest of the styles */
+
+        .hamburger {
+            display: block;
+            font-size: 30px;
+            cursor: pointer;
+            color: #d4af37; /* golden icon */
+        }
+        .active-link {
+            background-color: #2b2b2b; /* slightly lighter dark */
+        }
+        .content {
+            flex: 1;
+            padding: 60px 20px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .contact-form {
+            width: 100%;
+            max-width: 320px;
+            background: #262626; /* very dark grey */
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-top: 20px;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #333;
+            background: #333; /* dark input fields */
+            color: #d4af37; /* golden text */
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #d4af37; /* golden button */
+            color: #1a1a1a; /* text color dark */
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #c5a028; /* darker golden */
+        }
+        .map {
+            width: 100%;
+            max-width: 320px;
+            height: 200px;
+            margin-top: 20px;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        @media (min-width: 600px) {
+            .contact-form, .map {
+                max-width: 600px;
+            }
+            nav {
+                display: flex;
+            }
+            .hamburger {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="logo.png" alt="WSF Logo" style="height: 50px;">
+        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <nav>
+            <a href="home.html" style="color: #d4af37; padding: 0 15px;">Home</a>
+            <a href="about.html" style="color: #d4af37; padding: 0 15px;">About</a>
+            <a href="initiatives.html" style="color: #d4af37; padding: 0 15px;">Initiatives</a>
+            <a href="events.html" style="color: #d4af37; padding: 0 15px;">Events</a>
+            <a href="gallery.html" style="color: #d4af37; padding: 0 15px;">Gallery</a>
+            <a href="blog.html" style="color: #d4af37; padding: 0 15px;">Blog</a>
+            <a href="contact.html" class="active-link" style="color: #d4af37; padding: 0 15px;">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <h1>Contact Us</h1>
+        <div class="contact-form">
+            <form action="https://formsubmit.co/weseanstudentfederation@proton.me" method="POST">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required placeholder="Your name...">
+                
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required placeholder="Your email...">
+                
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" required placeholder="Your message..."></textarea>                
+                
+                <button type="submit">Send Message</button>
+            </form>
+        </div>
+        <div class="map" id="map"></div>
+    </div>
+    <footer style="background: #333; color: #d4af37; padding: 10px 20px; text-align: center;">
+        <p>© 2024 Wesean Student Federation - <a href="mailto:weseanstudentfederation@proton.me" style="color: #d4af37;">Email Us</a></p>
+    </footer>
+    <script>
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+        }
+        function initMap() {
+            
+            var location = {lat: 25.561988, lng: 91.887030}; // Approximate location coordinates for Jowai Rd, Umpling, Shillong
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 15,
+                center: location,
+                styles: [
+                    {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
+                    {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
+                    {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
+                    {
+                        featureType: 'administrative.locality',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'poi',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'geometry',
+                        stylers: [{color: '#263c3f'}]
+                    },
+                    {
+                        featureType: 'poi.park',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#6b9a76'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry',
+                        stylers: [{color: '#38414e'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'geometry.stroke',
+                        stylers: [{color: '#212a37'}]
+                    },
+                    {
+                        featureType: 'road',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#9ca5b3'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry',
+                        stylers: [{color: '#746855'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'geometry.stroke',
+                        stylers: [{color: '#1f2835'}]
+                    },
+                    {
+                        featureType: 'road.highway',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#f3d19c'}]
+                    },
+                    {
+                        featureType: 'transit',
+                        elementType: 'geometry',
+                        stylers: [{color: '#2f3948'}]
+                    },
+                    {
+                        featureType: 'transit.station',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#d59563'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'geometry',
+                        stylers: [{color: '#17263c'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.fill',
+                        stylers: [{color: '#515c6d'}]
+                    },
+                    {
+                        featureType: 'water',
+                        elementType: 'labels.text.stroke',
+                        stylers: [{color: '#17263c'}]
+                    }
+                ]
+            });
+            var marker = new google.maps.Marker({
+                position: location,
+                map: map,
+                title: 'WSF Location'
+            });
+        }
+    </script>
+</body>
+</html>
