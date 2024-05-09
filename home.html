@@ -25,55 +25,69 @@
             <a href="contact">Contact</a>
         </nav>
     </header>
-    <div class="hero container-fluid" id="hero">
-        <section>
-            <h1>Wesean Student Federation</h1>
-            <p id="typedtext"> ... </p>
-        </section>
-    </div>
-    <div class="news-ticker">
-        <p>Latest News: Support our initiatives for a better tomorrow!</p>
-    </div>
+    
+    
     <main>
-        <section class="main-content">
-            <div id="about" the content-box>
-                <h2>What We Do</h2>
-                <p>Leading advocacy for rights and education in Northeast India.</p>
-                <a href="about.html" class="button">Learn More</a>
+        <div class="hero container-fluid" id="hero">
+            <section>
+                <h1>Wesean Student Federation</h1>
+                <p id="typedtext"> ... </p>
+            </section>
+        </div>
+        
+        <section class="main_box">
+            <div class="news-ticker">
+                <a href="events.html">Latest News: Support our initiatives for a better tomorrow!</a>
+                <!-- <p>Latest News: Support our initiatives for a better tomorrow!</p> -->
             </div>
-            <div id="initiatives" the content-box>
-                <h2>Initiatives</h2>
-                <p>Explore our initiatives to improve community engagement and development.</p>
-                <a href="initiatives.html" class="button">Learn More</a>
-            </div>
-            <div id="blog" the content-box>
-                <h2>Latest Blogs</h2>
-                <p>Read insights and updates from our active community.</p>
-                <a href="blog.html" class="button">Read More</a>
+            <section class="main-content">
+                <div id="about" the content-box>
+                    <h2>What We Do</h2>
+                    <p>Leading advocacy for rights and education in Northeast India.</p>
+                    <a href="about.html" class="button">Learn More</a>
+                </div>
+                <div id="initiatives" the content-box>
+                    <h2>Initiatives</h2>
+                    <p>Explore our initiatives to improve community engagement and development.</p>
+                    <a href="initiatives.html" class="button">Learn More</a>
+                </div>
+                <div id="blog" the content-box>
+                    <h2>Latest Blogs</h2>
+                    <p>Read insights and updates from our active community.</p>
+                    <a href="blog.html" class="button">Read More</a>
+                </div>
+            </section>
+            <div class="organization-structure">
+                <h2>Organization Structure</h2>
+                <div class="structure-diagram">
+                    <div class="structure-box" onclick="showOverlay('General Council', 'The General Council is the apex body of WSF, overseeing all major decisions and policies. It directly manages the high school and ethnic wings, ensuring alignment with the federation\'s goals.')">General Council</div>
+                    <div class="structure-box" onclick="showOverlay('High School Wing', 'Focused on secondary education, this wing promotes student rights and educational reforms. It functions under the direct oversight of the General Council, aiming to foster a proactive youth community.')">High School Wing</div>
+                    <div class="structure-box" onclick="showOverlay('Ethnic Wing', 'This wing addresses the unique needs and challenges of ethnic groups within the student population. It advocates for inclusive policies and cultural representation in educational institutions.')">Ethnic Wing</div>
+                    <div class="structure-box" onclick="showOverlay('Regional Wings', 'Autonomous yet accountable to the General Council, regional wings manage local issues and operate within the broader objectives of WSF. They supervise college wings, providing resources and guidance.')">Regional Wings</div>
+                    <div class="structure-box" onclick="showOverlay('College Wings', 'College wings are administratively managed by their respective regional wings. They focus on higher education challenges, student welfare, and academic freedom, promoting a vibrant academic community.')">College Wings</div>
+                </div>
             </div>
         </section>
-        <div class="organization-structure">
-            <h2>Organization Structure</h2>
-            <div class="structure-diagram">
-                <div class="structure-box" onclick="showOverlay('General Council', 'The General Council is the apex body of WSF, overseeing all major decisions and policies. It directly manages the high school and ethnic wings, ensuring alignment with the federation\'s goals.')">General Council</div>
-                <div class="structure-box" onclick="showOverlay('High School Wing', 'Focused on secondary education, this wing promotes student rights and educational reforms. It functions under the direct oversight of the General Council, aiming to foster a proactive youth community.')">High School Wing</div>
-                <div class="structure-box" onclick="showOverlay('Ethnic Wing', 'This wing addresses the unique needs and challenges of ethnic groups within the student population. It advocates for inclusive policies and cultural representation in educational institutions.')">Ethnic Wing</div>
-                <div class="structure-box" onclick="showOverlay('Regional Wings', 'Autonomous yet accountable to the General Council, regional wings manage local issues and operate within the broader objectives of WSF. They supervise college wings, providing resources and guidance.')">Regional Wings</div>
-                <div class="structure-box" onclick="showOverlay('College Wings', 'College wings are administratively managed by their respective regional wings. They focus on higher education challenges, student welfare, and academic freedom, promoting a vibrant academic community.')">College Wings</div>
-            </div>
-        </div>
-        <div class="overlay" id="overlay">
-            <div class="overlay-content">
-                <span class="close-button" onclick="closeOverlay()">×</span>
-                <h2 id="overlay-title"></h2>
-                <p id="overlay-text"></p>
-            </div>
-        </div>
     </main>
+
+    <div class="overlay" id="overlay">
+        <div class="overlay-content">
+            <span class="close-button" onclick="closeOverlay()">×</span>
+            <h2 id="overlay-title"></h2>
+            <p id="overlay-text"></p>
+        </div>
+    </div>
+
     <footer>
         <p>© 2024 Wesean Student Federation. All rights reserved. Follow us on <a href="https://www.instagram.com/weseanstudentfederation/">Instagram</a>.</p>
     </footer>
+
+    
     <script>
+        let text = document.querySelector('.news-ticker a');
+        var textln = document.querySelector(':root');
+        var x  =  (text.innerHTML.length+10)+'vw'
+        textln.style.setProperty('--newsticker',x);
         function toggleMenu() {
             const nav = document.querySelector('nav');
             if (nav.style.display === 'flex') {
