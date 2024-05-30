@@ -5,37 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>About Us - Wesean Student Federation</title>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/common.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #282828;
-            color: #FFD700;
-            margin: 0;
-            padding: 0;
-            overflow-y: auto;
-        }
-        header, footer {
-            background-color: #121212;
-            color: #fff;
-            padding: 10px 20px;
-            text-align: center;
-            position: fixed;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-        }
-        header {
-            top: 0;
-        }
-        footer {
-            bottom: 0;
-        }
         main {
-            padding: 80px 20px 60px;
+            margin-top:4rem;
+            padding: 0px 20px 60px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            margin-top: 60px;
+            justify-content: center;
             margin-bottom: 40px;
         }
         .section {
@@ -47,18 +25,52 @@
             padding: 20px;
             display: flex;
             flex-direction: column;
+            border: 3.5px solid gold;
+        }
+        .oldbg{
+            display:block;
+            background-image: url('images/oldbg.png');
+            background-position: center top;
+            background-repeat: no-repeat;
+
+            max-width: 60%;
+            height: auto;
+
+            border-radius: 8px;
+            border: 3.5px solid gold;
+
+            background-size: cover;
+            padding: 10px;
+        }
+        .fancy-text {
+            font-family: 'Dancing Script', cursive; /* Handwritten-style font */
+            font-size: 2.5em;
+            text-wrap: wrap;
+            font-weight: bold;
+            text-align: center;
+            color: black;
+            overflow:hidden;
+        }
+        .fancy-hr{
+            border-color: #FFD700;
+            width: 100%;
+            border-width: 3.5px;
+            border-style: solid;
+            margin-top: 15vh;
         }
         .map-container {
             display: flex;
             align-items: center;
             justify-content: center;
+            margin-top: 20px;
             flex-wrap: wrap; /* Allow items to wrap on smaller screens */
         }
         
         .map {
-            max-width: 40%;
+            max-width: 20%;
             height: auto; /* Maintain aspect ratio */
             border-radius: 8px;
+            box-shadow: 0px 0px 10px gold;
             margin-right: 20px; /* Space between map and text */
         }
         
@@ -67,28 +79,10 @@
         }
         
         
-        h1, h2, .fancy-text {
+        h1, h2 {
             color: #FFD700;
         }
-        .fancy-text {
-            font-family: 'Dancing Script', cursive; /* Handwritten-style font */
-            font-size: 24px;
-            font-weight: bold;
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        nav a {
-            color: #FFD700;
-            text-decoration: none;
-            padding: 5px 10px;
-            transition: color 0.3s;
-        }
-        nav a:hover {
-            color: #FFA500;
-        }
-        nav .active {
-            color: #FF4500;
-        }
+        
         .modal {
             display: none;
             position: fixed;
@@ -125,9 +119,21 @@
             border: none;
         }
         @media screen and (max-width: 768px) {
-            .map, .region-text {
+            .map, .region-text,.oldbg {
                 max-width: 100%; /* Full width on smaller screens */
                 margin-right: 0; /* Remove margin between items on smaller screens */
+            }
+            .oldbg{
+                background-size: cover;
+                background-image: url("images/oldbg small.png");
+                background-position: center bottom;
+            }
+            .fancy-hr{
+                position: absolute;
+                left:-10000px;
+            }
+            .fancy-text{
+                font-size: 1rem;
             }
         }
 
@@ -135,29 +141,32 @@
 </head>
 <body onkeydown="return (event.ctrlKey && event.keyCode === 80) ? false : true">
     <header>
-        <img src="logo.png" alt="WSF Logo" style="height: 50px;">
-        <nav style="margin-left: auto;">
-            <a href="home.html">Home</a> |
-            <a href="about.html" class="active">About Us</a> |
-            <a href="events.html">Events</a> |
-            <a href="initiatives.html">Initiatives</a> |
-            <a href="blog.html">Blog</a> |
-            <a href="contact.html">Contact</a>
+        <img src="images/logo.png" alt="WSF Logo" class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
+        <nav>
+            <a href="home.html">Home</a>
+            <a href="#">About</a>
+            <a href="initiatives.html">Initiatives</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="blog.html">Blog</a>
+            <a href="contact">Contact</a>
         </nav>
     </header>
     <main>
-        <section class="section fancy-text">
+        <section class="map-container oldbg">
             <!-- Preamble -->
-            <p>We, the students of Wesea (Western SouthEast Asia), coming together from the diverse regions of Northeast India and Northern parts of West Bengal, Chittagong, Mymensingh, parts of Sylhet in Bangladesh, and Kachin, Chin, and Naga areas of Myanmar, united by our common heritage and aspirations, solemnly resolve to form the Wesean Student Federation, otherwise known as the WSF. This federation stands as a beacon of unity, integrity, and fraternity among all Wesean students. Guided by the undying spirit of solidarity, we dedicate ourselves to protecting indigenous rights, promoting our rich Wesean culture, and enhancing the educational and intellectual prowess of our student body.</p>
-            <p>Resolved to dismantle the barriers of ethnonationalism and internal discord, we pledge to uphold the values of unity and integrity, fostering an environment where every voice is heard and valued. We commit to standing against all forms of division and strife among Weseans, ensuring a cohesive and harmonious community.</p>
-            <p>Through this federation, we vow to champion the collective interests of Wesean students, safeguarding our traditions and rights while paving the way for a future replete with academic excellence and cultural prosperity. On this historic day, the 17th of April 2024, we adopt, enact, and give to ourselves this constitution, binding ourselves to these principles for the advancement and unity of all Weseans.</p>
+            <hr class="fancy-hr">
+            <p class="fancy-text">We, the students of Wesea (Western SouthEast Asia), coming together from the diverse regions of Northeast India and Northern parts of West Bengal, Chittagong, Mymensingh, parts of Sylhet in Bangladesh, and Kachin, Chin, and Naga areas of Myanmar, united by our common heritage and aspirations, solemnly resolve to form the Wesean Student Federation, otherwise known as the WSF. This federation stands as a beacon of unity, integrity, and fraternity among all Wesean students. Guided by the undying spirit of solidarity, we dedicate ourselves to protecting indigenous rights, promoting our rich Wesean culture, and enhancing the educational and intellectual prowess of our student body.</p>
+            <p class="fancy-text">Resolved to dismantle the barriers of ethnonationalism and internal discord, we pledge to uphold the values of unity and integrity, fostering an environment where every voice is heard and valued. We commit to standing against all forms of division and strife among Weseans, ensuring a cohesive and harmonious community.</p>
+            <p class="fancy-text">Through this federation, we vow to champion the collective interests of Wesean students, safeguarding our traditions and rights while paving the way for a future replete with academic excellence and cultural prosperity. On this historic day, the 17th of April 2024, we adopt, enact, and give to ourselves this constitution, binding ourselves to these principles for the advancement and unity of all Weseans.</p>
         </section>
         <section class="section">
             <h2>About Us</h2>
             <p>The Wesean Student Federation (WSF) is headquartered in Shillong, a symbolic site as the former capital of the Northeast Presidency under British administration. Our federation strives to empower students through advocacy, education, and leadership across the Wesea region.</p>
         </section>
         <div class="map-container">
-            <img src="map.png" alt="Regions Served Map" class="map">
+            <img src="images/map.png" alt="Regions Served Map" class="map">
             <div class="region-text">
                 <h2>Regions Served</h2>
                 <ul>
@@ -179,8 +188,13 @@
             <iframe src="Constitution.pdf"></iframe>
         </section>
         <section class="section">
-            <p>
-The Wesean Student Federation website was created by Rajen Monseng Borborua, an Ahom high schooler from Tezpur; Jonak Pratim Thakuira, a CS undergraduate; Esther a cyber security student from Chin State Myanmar, and Ranjan Borah, a high schooler studying in Naharlagun. </p>
+            <q>
+                The Wesean Student Federation website was created by 
+                Rajen Monseng Borborua, an Ahom high schooler from Tezpur; 
+                Jonak Pratim Thakuira, a CS undergraduate; 
+                Esther a cyber security student from Chin State Myanmar, and 
+                Ranjan Borah, a high schooler studying in Naharlagun. 
+            </q>
         </section>
     </main>
     <footer>
