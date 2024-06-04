@@ -7,6 +7,12 @@
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/common.css">
     <style>
+        .cormorant {
+        font-family: "Cormorant", serif;
+        font-optical-sizing: auto;
+        font-weight: 500;
+        font-style: normal;
+        }
         main {
             margin-top:4rem;
             padding: 0px 20px 60px;
@@ -21,6 +27,7 @@
             width: 80%;
             background: #333;
             border-radius: 8px;
+            font-size: 1.2rem;
             box-shadow: 0 4px 6px rgba(0,0,0,0.1);
             padding: 20px;
             display: flex;
@@ -75,7 +82,11 @@
         }
         
         .region-text {
+            position: relative;
             max-width: 60%;
+            font-size: x-large;
+            left: 60px;
+
         }
         
         
@@ -118,6 +129,30 @@
             height: 600px; /* Increased height for better visibility */
             border: none;
         }
+        section:nth-last-child(1){
+            display: flex;
+            flex-direction: row;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+        section:nth-last-child(1) p{
+            display:block;
+            font-size: 7rem;
+            color:gold;
+        }
+        section:nth-last-child(1) q span{
+            display:block;
+            position:relative;
+            left:-30px;
+            text-decoration: underline;
+            font-size:1.5rem;
+            margin-bottom: 5px;
+        }
+        section:nth-last-child(1) ul li::marker{
+            color:gold;
+            margin-left:10px;
+        }
+
         @media screen and (max-width: 768px) {
             .map, .region-text,.oldbg {
                 max-width: 100%; /* Full width on smaller screens */
@@ -135,6 +170,32 @@
             .fancy-text{
                 font-size: 1rem;
             }
+            .region-text{
+                /* position: static; */
+                left: 10px;
+                text-wrap: wrap;
+                font-size: inherit;
+                padding-top:10px ;
+            }
+            .person-name{
+                text-wrap: nowrap;
+            }
+            .section:nth-last-child(2){
+               border-inline: 0px;
+               width:120%;
+               margin-inline: 0px;
+               border-radius: 0px;
+            }
+            .footer{
+                width:103%;
+            }
+            section:nth-last-child(1) q span{
+                left:0px;
+                padding:5px;
+            }
+            section:nth-last-child(1) p{
+                display:none;
+            }
         }
 
     </style>
@@ -150,7 +211,6 @@
             <a href="events.html">Events</a>
             <a href="gallery.html">Gallery</a>
             <a href="blog.html">Blog</a>
-            <a href="contact">Contact</a>
         </nav>
     </header>
     <main>
@@ -183,21 +243,25 @@
                 <!-- Example roles with pop-up functionality for details will be populated here by the script below -->
             </div>
         </section>
-        <section class="section">
+        <section class="section pdf">
             <h2>Our Constitution</h2>
             <iframe src="Constitution.pdf"></iframe>
         </section>
         <section class="section">
-            <q>
-                The Wesean Student Federation website was created by 
-                Rajen Monseng Borborua, an Ahom high schooler from Tezpur; 
-                Jonak Pratim Thakuira, a CS undergraduate; 
-                Esther a cyber security student from Chin State Myanmar, and 
-                Ranjan Borah, a high schooler studying in Naharlagun. 
+            <p class="cormorant">{</p>
+            <q style="quotes:none; ">
+                <span> Wesean Student Federation website was created by - </span>
+                <ul>
+                    <li>Rajen Monseng Borborua, an Ahom high schooler from Tezpur</li>
+                    <li>Jonak Pratim Thakuira, a CS undergraduate</li>
+                    <li>Esther a cyber security student from Chin State Myanmar</li>
+                    <li>Ranjan Borah, a high schooler studying in Naharlagun</li>
+                </ul>
             </q>
+            <p class="cormorant">}</p>
         </section>
     </main>
-    <footer>
+    <footer id="footer">
         <p>© 2024 Wesean Student Federation</p>
     </footer>
     <div class="modal" id="modal">
