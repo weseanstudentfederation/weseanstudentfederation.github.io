@@ -14,10 +14,11 @@ body, html {
     background-color: #1c1c1c;
     color: white;
     scroll-behavior: smooth;
+    position: relative;
     /* display: block; */
 }
-
-
+html{height:100%;}
+body{min-height: 100%;}
  /* Header */
  header {
     background: #121212;
@@ -71,15 +72,15 @@ nav a:hover {
 
 footer {
     text-align: center;
-    padding: 10px;
     background: #121212;
     border:1px solid gold;
     border-width: 6px 0 0 0;
-    position: relative; 
+    position: absolute; 
     padding: 10px;
     bottom: 0;
     height: 50px;
     width: 100%;
+    color:aliceblue
 }
 @media only screen and (max-width: 700px) {
     .menu-icon {
