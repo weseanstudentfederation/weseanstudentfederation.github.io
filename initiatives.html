@@ -17,11 +17,8 @@
             --light-text-bg-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
         }
         body {
-            /* background-color: var(--main-bg-color);
-            color: var(--text-color); */
-            /* min-height: 100vh; */
             transition: background-color 0.3s, color 0.3s;
-            /* height:200vh; */
+            height:200vh;
         }
         body.light-mode {
             background-color: var(--light-bg-color);
@@ -98,6 +95,12 @@
             .container{
                 padding-bottom: 60px;;
             }
+            body.light-mode{
+                background-image: url('images/drag.png');
+                background-size: 90vh;
+                background-position: center center;
+            }
+
         }
         @media (max-width: 480px) {
             .tile { width: calc(100% - 40px); }
@@ -112,7 +115,7 @@
         <img src="images/logo.png" alt="WSF Logo" class="logo">
         <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
-            <a href="home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="#">Initiatives</a>
             <a href="events.html">Events</a>

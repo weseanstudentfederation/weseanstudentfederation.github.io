@@ -337,6 +337,7 @@ footer {
         height: auto;
         text-align: center;
         text-wrap: wrap;
+        font-size: 1.3rem;
     }
     nav {
         flex-direction: column;
