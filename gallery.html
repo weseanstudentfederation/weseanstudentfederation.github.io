@@ -245,7 +245,14 @@
                 'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg']
 
             ];
-        
+            function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
         // image initator.
         function populateImages(imageUrls) {
             console.log(imageUrl)

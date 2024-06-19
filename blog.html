@@ -5,43 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Wesean Student Federation</title>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap">
+    <link rel="stylesheet" href="css/common.css">
     <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1a1a1a;
-            color: #d4af37;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: #333;
-            color: #d4af37;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            width: 100%;
-            z-index: 1000;
-        }
-        nav {
-            display: flex;
-        }
-        nav a {
-            color: #d4af37;
-            padding: 0 15px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        .active-link {
-            text-decoration: underline;
-        }
-        .content {
+       .content {
             flex: 1;
             padding: 140px 20px 80px; /* Increased bottom padding */
             display: flex;
@@ -108,17 +74,8 @@
             color: #d4af37;
             text-decoration: underline;
         }
-        footer {
-            background: #333;
-            color: #d4af37;
-            padding: 10px 20px;
-            text-align: center;
-            position: fixed;
-            bottom: 0;
-            width: 100%;
-        }
         @media (max-width: 600px) {
-            header, footer, .content, .blog-tile {
+            .content, .blog-tile {
                 padding: 10px;
             }
         }
@@ -126,14 +83,14 @@
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="WSF Logo" style="height: 50px;">
+        <img src="images/logo.png" alt="WSF Logo" style="height: 50px;">
         <nav>
-            <a href="home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="initiatives.html">Initiatives</a>
             <a href="events.html">Events</a>
             <a href="gallery.html">Gallery</a>
-            <a href="blog.html" class="active-link">Blog</a>
+            <a href="#">Blog</a>
             <a href="contact.html">Contact</a>
         </nav>
     </header>

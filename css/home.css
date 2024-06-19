@@ -219,9 +219,9 @@ a {
     align-items: center;
     padding: 20px;
     background: #333;
-    margin: 30px 0px;
+    margin: 30px 1.8px;
     /* border-radius: 8px; */
-    filter: drop-shadow(0px 20px 20px #333);
+    filter: drop-shadow(5px 0px 20px #333);
 }
 .organization-structure h1{
     font-size: xx-large;
@@ -287,6 +287,33 @@ a {
     font-weight: bolder;
     color: #fff;
 }
+
+.Contacts{
+    display: flex;
+    flex-direction:column;
+    width:100%;
+    height: 20vh;
+    background-image: linear-gradient(to top, black ,#1c1c1c );
+    padding-top: 60px;
+    color:gold;
+}
+.Contacts h1{
+    padding-left: 20px;
+}
+.Contact-links{
+    color:white;
+    column-gap: 3px;
+    padding-left: 25px;
+    padding-top: 2px;
+}
+.Contact-links a{
+    color:goldenrod;
+    text-decoration: underline;
+}
+.Contact-links a:hover{
+    color:red;
+}
+
 footer {
     text-align: center;
     padding: 10px;
