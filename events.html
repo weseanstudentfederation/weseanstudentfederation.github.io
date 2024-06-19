@@ -4,60 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WSF Events</title>
-    <link rel="stylesheet" href="styles.css">
-        <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1c1c1c;
-            color: white;
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+        .event-header {
             display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: #121212;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .logo {
-            height: 50px;
-            margin-right: auto;
-        }
-        nav {
-            margin-left: auto;
-        }
-        nav a {
-            color: #FFD700;
-            text-decoration: none;
-            padding: 10px;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-        nav a:hover, nav a.active {
-            color: #FF4500;
-        }
-        .events-header {
-            text-align: center;
-            font-size: 24px;
-            margin: 100px 0 20px;
+            justify-content: center;
+            font-size: max(10rem,10vh);
+            font-weight: 800;
+            margin: 60px 0 20px;
+
+            background-image: linear-gradient(to right, rgb(145, 123, 0),gold,white,gold,rgb(145, 123, 0));;
+            background-image:url('images/Gold3.png');
+            background-position: center center;
+            background-clip:text;
+            color: hsla(0,0%,0%, 0.1);
         }
         .event-container {
             flex: 1;
-            padding: 80px 20px 20px;
+            padding: 20px 20px 80px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
             gap: 20px;
             overflow-y: auto;
-            margin-bottom: 60px;
         }
         .event {
             width: 300px;
@@ -100,7 +69,8 @@
             flex-direction: column;
         }
         .modal-header {
-            font-size: 22px;
+            font-size: 44px;
+            font-weight: bolder;
             color: #FFD700;
         }
         .modal-body {
@@ -112,7 +82,9 @@
             margin-bottom: 10px;
         }
         .modal-image {
-            width: 100%;
+            width: 80%;
+            height:auto;
+            align-self: center;
         }
         .close {
             position: absolute;
@@ -126,15 +98,7 @@
         .close:hover {
             color: #FF4500;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #121212;
-            width: 100%;
-            bottom: 0;
-            position: fixed;
-        }
-        .sort-container {
+        /* .sort-container {
             position: fixed;
             right: 20px;
             top: 180px;
@@ -152,7 +116,7 @@
         }
         .sort-button:hover {
             background: #444;
-        }
+        } */
         .clock {
             position: fixed;
             right: 20px;
@@ -174,6 +138,7 @@
         .clock-date {
             font-size: 14px;
         }
+        /*
         .filter-container {
             position: fixed;
             right: 20px;
@@ -182,7 +147,7 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             backdrop-filter: blur(10px);
-            display: flex;
+            display: flex; 
             flex-direction: column;
             align-items: flex-end;
         }
@@ -213,32 +178,17 @@
             font-size: 14px;
             margin-top: 10px;
         }
-        
-        @media only screen and (max-width: 600px) {
-            .menu-icon {
-                display: block;
-            }
-            nav {
-                flex-direction: column;
-                width: 100%;
-                display: none;
-                background: #121212;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                right: 0;
-            }
-            nav a {
-                display:block;
-                text-align:center;
-                padding: 15px;
-                border-top: 1px solid #2c2c2c;
+        */
+        @media only screen and (max-width: 750px) {
+            .event-header{
+                font-size: 4rem;
             }
             .content-box {
                 flex-basis: 100%;
             }
             .event-container {
-                padding: 10px;
+                padding: 20px;
+                padding-bottom: 80px;
             }
             .event {
                 width: 100%;
@@ -252,46 +202,54 @@
             .clock, .sort-container, .filter-container {
                 display: none;  
             }
-            header {
-                flex-direction: column;
-            }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="WSF Logo" class="logo">
+        <img src="images/logo.png" alt="WSF Logo" class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
             <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="initiatives.html">Initiatives</a>
-            <a href="#events" class="active">Events</a>
-          <a href="gallery.html">Gallery</a>
+            <a href="events.html">Events</a>
+            <a href="#">Gallery</a>
             <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
         </nav>
     </header>
-    <h2 class="events-header">Events</h2>
-    <div class="filter-container">
+    <div class="gallery-header">Gallery</div>
+    <hr style="border:1px solid gold;">
+    <div class="gallery-container">
+        <!-- Images will be populated by JavaScript -->
+    </div>
+    <h2 class="event-header">Events</h2>
+    <div class="clock" id="clock"></div>
+    <hr style="border:1px solid gold;">
+
+    <!-- <div class="filter-container">
         <input type="date" id="dateFilter" class="filter-input" placeholder="Date">
         <input type="text" id="locationFilter" class="filter-input" placeholder="Location">
         <button class="filter-button" onclick="filterEvents()">Apply Filters</button>
         <div class="location-info" id="locationInfo"></div>
-    </div>
+    </div> -->
+
     <div class="event-container"></div>
     <div class="modal" id="eventModal">
         <span class="close" onclick="closeModal()">&times;</span>
         <div class="modal-content">
             <div class="modal-header" id="modalHeader"></div>
+            <hr style="border:1px solid gold;">
             <img src="" alt="Event Poster" class="modal-image">
+            <hr style="border:1px solid gold;">
             <div class="modal-body">
-                <p id="modalDetails"></p>
+                <p id="modalDetails" style="color:gold;"></p>
                 <p id="modalPartner"></p>
                 <p id="modalDescription"></p>
             </div>
         </div>
     </div>
-    <div class="clock" id="clock"></div>
+    
     <footer>
         <p>© 2024 Wesean Student Federation</p>
     </footer>
@@ -388,6 +346,15 @@
             // Add more event data as needed
         ];
 
+        function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
+
         function populateEvents(filteredEvents = eventsData) {
             const container = document.querySelector('.event-container');
             container.innerHTML = ''; // Clear previous entries
@@ -455,14 +422,6 @@
             locationInfo.textContent = `Your location: ${position.coords.latitude.toFixed(2)}, ${position.coords.longitude.toFixed(2)}`;
         }
 
-        function toggleMenu() {
-            const nav = document.querySelector('nav');
-            if (nav.style.display === 'flex') {
-                nav.style.display = 'none';
-            } else {
-                nav.style.display = 'flex';
-            }
-        }
         document.addEventListener('DOMContentLoaded', function() {
             populateEvents();
             updateClock();

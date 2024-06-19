@@ -8,10 +8,10 @@
     <link rel="stylesheet" href="css/common.css">
     <style>
         .cormorant {
-        font-family: "Cormorant", serif;
-        font-optical-sizing: auto;
-        font-weight: 500;
-        font-style: normal;
+            font-family: "Cormorant", serif;
+            font-optical-sizing: auto;
+            font-weight: 500;
+            font-style: normal;
         }
         main {
             margin-top:4rem;
@@ -122,7 +122,7 @@
             color: #FF4500; /* Position color */
         }
         .person-name {
-            color: #FFD700; /* Person name color */
+            color: inherit; /* Person name color */
         }
         iframe {
             width: 100%; /* Full width of the section */
@@ -152,7 +152,17 @@
             color:gold;
             margin-left:10px;
         }
-
+        #roles{
+            margin-left: 20px;
+        }
+        .role-item{
+            background-color: #444;
+            color:gold;
+        }
+        .role-item:hover{
+            background-color: hsl(0, 0%, 100%);
+            color:rgb(172, 105, 116);
+        }
         @media screen and (max-width: 768px) {
             .map, .region-text,.oldbg {
                 max-width: 100%; /* Full width on smaller screens */
@@ -265,6 +275,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal()">&times;</span>
             <h2 id="roleTitle"></h2>
+            <hr style="border:0.1px solid gold;">
+            <br>
             <p id="roleDescription"></p>
         </div>
     </div>
@@ -298,8 +310,9 @@
             roleDiv.style.cursor = 'pointer';
             roleDiv.style.padding = '5px';
             roleDiv.style.marginTop = '5px';
-            roleDiv.style.background = '#444';
+            // roleDiv.style.background = '#444';
             roleDiv.style.borderRadius = '5px';
+            roleDiv.setAttribute("class","role-item")
             roleDiv.onclick = () => {
                 showModal(role, rolesData[role].desc);
             };
