@@ -291,18 +291,25 @@ a {
 .Contacts{
     display: flex;
     flex-direction:column;
+    
+
     width:100%;
     height: 20vh;
     background-image: linear-gradient(to top, black ,#1c1c1c );
     padding-top: 60px;
     color:gold;
+    padding-bottom: 10rem;
 }
 .Contacts h1{
     padding-left: 20px;
+    font-size: 5vh;
+    font-weight: 900;
 }
 .Contact-links{
+    font-size: 2vh;
+    align-self: center;
     color:white;
-    column-gap: 3px;
+    /* column-gap: 3px; */
     padding-left: 25px;
     padding-top: 2px;
 }
@@ -404,5 +411,8 @@ footer {
         0% {color: #ff440000; }
         50% {color: #FF4500;}
         100% {color: #ff440000; }
+    }
+    .Contacts{
+        padding-bottom: 7rem;
     }
 }
