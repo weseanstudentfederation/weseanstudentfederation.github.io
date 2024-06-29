@@ -4,62 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>WSF Gallery</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/common.css">
     <style>
-        body {
-            font-family: 'Arial', sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #1c1c1c;
-            color: white;
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        header {
-            background: #121212;
-            padding: 10px 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-        }
-        .logo {
-            height: 50px;
-            margin-right: auto;
-        }
-        nav {
-            margin-left: auto;
-            display: flex;
-        }
-        nav a {
-            color: #FFD700;
-            text-decoration: none;
-            padding: 10px;
-            font-size: 16px;
-            transition: color 0.3s;
-        }
-        nav a:hover, nav a.active {
-            color: #FF4500;
-        }
         .gallery-header {
-            text-align: center;
-            font-size: 24px;
-            margin: 100px 0 20px;
+            display: flex;
+            justify-content: center;
+            font-size: max(10rem,10vh);
+            font-weight: 800;
+            margin: 60px 0 20px;
+
+            background-image: linear-gradient(to right, rgb(145, 123, 0),gold,white,gold,rgb(145, 123, 0));;
+            background-image:url('images/Gold3.png');
+            background-position: center center;
+            background-clip:text;
+            color: hsla(0,0%,0%, 0.1);
         }
         .gallery-container {
-            padding: 80px 20px 20px;
+            padding: 40px 20px;
+            padding-bottom: 100px;
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
+            gap: 30px;
         }
         .photo {
-            width: 200px;
-            height: 200px;
+            width: 300px;
+            height: 300px;
             background-size: cover;
             background-position: center;
             transition: transform 0.5s ease-in-out;
@@ -68,6 +38,9 @@
         .photo:hover {
             transform: scale(1.1);
         }
+
+
+        
         .modal {
             display: none;
             position: fixed;
@@ -83,7 +56,8 @@
         }
         .modal-content {
             position: relative;
-            background: white;
+            background: gold;
+            background-image: linear-gradient(to right, rgb(145, 123, 0),gold,white,gold,rgb(145, 123, 0));
             width: 90%;
             max-width: 700px;
             padding: 20px;
@@ -109,12 +83,53 @@
         .close:hover {
             color: #ff4500;
         }
+
         .pagination {
+            position: relative;
+            display: none;
+            justify-content: center;
             text-align: center;
+            gap:10px;
             padding: 20px;
+            /* margin-top: 10px; */
+            padding-bottom: 100px;
+            color:gold;
+            width:100%;
+            height:10vh;
+        }
+        .pagination-button{
+            appearance: none;
+            -moz-appearance: none;
+            -webkit-appearance: none;
+            -ms-appearance: none;
+            display: inline-block;
+            border:none;
+
+            border-radius: 5px;
+            width: 10ch;
+            height: 30px;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color:#1c1c1c;
+            background-color: gold;
+        }
+        .pagination-button:hover{
+            background-color: aliceblue;
+            color: rgb(252, 115, 138);
+        }
+        .pagination-button:disabled{
+            display: none;
+        }
+        .pagination div{
+            display: flex;
+            width: fit-content;
+            height: max-content;
+            text-align: center;
+            padding: 5px;
+            align-items: baseline;
         }
         .page-link {
-            color: #FFD700;
+            color: gold;
             margin: 0 10px;
             text-decoration: none;
             font-size: 18px;
@@ -123,34 +138,9 @@
         .page-link:hover {
             color: #FF4500;
         }
-        footer {
-            text-align: center;
-            padding: 20px;
-            background-color: #121212;
-        }
-        @media only screen and (max-width: 600px) {
-            nav {
-                flex-direction: column;
-                width: 100%;
-                background: #121212;
-                position: absolute;
-                top: 50px;
-                left: 0;
-                right: 0;
-                z-index: 1001; /* Ensure it's above other content */
-            }
-            nav a {
-                display:block;
-                text-align: center;
-                padding: 15px;
-                border-top: 1px solid #2c2c2c;
-            }
+        @media only screen and (max-width: 768px) {
             .gallery-container {
                 padding: 80px 10px 10px; /* Adjust padding for smaller screens */
-            }
-            .photo {
-                width: 100%; /* Full width on smaller screens */
-                height: auto; /* Maintain aspect ratio */
             }
             .modal-content {
                 width: 95%; /* Use more screen space for modal */
@@ -161,41 +151,33 @@
             .close, .zoom-in, .zoom-out {
                 top: 5px; /* Adjust control positions in modal */
             }
-            .hamburger {
-                display: block;
-                position: absolute;
-                right: 20px;
-                top: 15px;
-                cursor: pointer;
-                font-size: 30px;
-                color: white;
+            .gallery-header{
+                font-size: 4rem;
             }
-        }
-        @media only screen and (min-width: 601px) {
-            .hamburger {
-                display: none; /* Hide hamburger menu on larger screens */
+            .close{
+                top:20px;
             }
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="logo.png" alt="WSF Logo" class="logo">
-        <div class="hamburger" onclick="toggleMenu()">☰</div>
+        <img src="images/logo.png" alt="WSF Logo" class="logo">
+        <div class="menu-icon" onclick="toggleMenu()">&#9776;</div>
         <nav>
-            <a href="home.html">Home</a>
+            <a href="index.html">Home</a>
             <a href="about.html">About</a>
             <a href="initiatives.html">Initiatives</a>
             <a href="events.html">Events</a>
-            <a href="#gallery" class="active">Gallery</a>
-            <a href="blog.html">Blog</a>
-            <a href="contact.html">Contact</a>
+            <a href="#">Gallery</a>
         </nav>
     </header>
     <div class="gallery-header">Gallery</div>
+    <hr style="border:1px solid gold;">
     <div class="gallery-container">
         <!-- Images will be populated by JavaScript -->
     </div>
+
     <div class="modal" id="myModal">
         <div class="modal-content">
             <img class="modal-photo" id="img01">
@@ -204,6 +186,9 @@
     </div>
     <div class="pagination">
         <!-- Pagination will be dynamically generated -->
+        <button class="pagination-button" id="back" onclick="last_page()" disabled>Before</button>
+        <div> <p>Page : <span id="cr-page"></span> of <span id="tl-page"></span> </p> </div>
+        <button class="pagination-button" id="next" onclick="next_page()">Next</button>
     </div>
     <footer>
         <p>© 2024 Wesean Student Federation</p>
@@ -211,27 +196,81 @@
     <script>
         let currentZoom = 1;
         let currentPage = 1;
-        function populateImages() {
-            const imageUrls = [
+        let pages = 1;
+        // let new_images = new Array();
+        const imageUrl = [
+                ['https://preview.redd.it/students-of-northeast-india-v0-5bws9lh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=280f7a558616bcab23c2db3f906e0fcc3a966794',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://www.bnionline.net/sites/bnionline.net/files/styles/bni-detail-image/public/news-images/chin_ygn.jpg?itok=uZGa-I7h',
                 'https://preview.redd.it/students-of-northeast-india-v0-5bws9lh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=280f7a558616bcab23c2db3f906e0fcc3a966794',
                 'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
                 'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
-                'https://lh3.googleusercontent.com/proxy/EcrLsdxpY9jStZVdOPvVXw8uYFqfsEP1JCJVYL2o1NAaWun8LAc2-HiRddIshQw4_ZesvE_MPPhBTzR4lt1T-f4VzFlZlWrsKmOw7oHmlPfSAeO0IS6SY6bxNmUvmzs',
                 'https://www.bnionline.net/sites/bnionline.net/files/styles/bni-detail-image/public/news-images/chin_ygn.jpg?itok=uZGa-I7h',
+                'https://preview.redd.it/students-of-northeast-india-v0-5bws9lh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=280f7a558616bcab23c2db3f906e0fcc3a966794',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://www.bnionline.net/sites/bnionline.net/files/styles/bni-detail-image/public/news-images/chin_ygn.jpg?itok=uZGa-I7h',
+                'https://preview.redd.it/students-of-northeast-india-v0-5bws9lh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=280f7a558616bcab23c2db3f906e0fcc3a966794',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg'],
+
+                ['https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',   
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9'],
+
+                ['https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',   
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg',
+                'https://i.redd.it/students-of-northeast-india-v0-z6ebvlh5z1cb1.jpg?width=1024&format=pjpg&auto=webp&s=1cef2cbbcac1bfb1c657db5a73529fd77ecc39f9',
+                'https://www.forbesindia.com/media/images/2022/Oct/img_195939_studentsinaijwal.jpg']
+
             ];
+            function toggleMenu() {
+            const nav = document.querySelector('nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+            }
+        }
+        // image initator.
+        function populateImages(imageUrls) {
+            console.log(imageUrl)
             const container = document.querySelector('.gallery-container');
             container.innerHTML = ''; // Clear existing images
             imageUrls.forEach((url, index) => {
-                if (index < currentPage * 12 && index >= (currentPage - 1) * 12) {
+                if (index<=14) { //max image in page is 15
                     const div = document.createElement('div');
                     div.className = 'photo';
                     div.style.backgroundImage = `url('${url}')`;
                     div.onclick = function() { openModal(this.style.backgroundImage); };
                     container.appendChild(div);
                 }
+                else if(left_img==0){
+                    console.log("Wrong number of images in block")
+                } 
             });
-            updatePagination(imageUrls.length);
         }
+
         function openModal(bgImage) {
             var modal = document.getElementById('myModal');
             var modalImg = document.getElementById('img01');
@@ -244,7 +283,49 @@
             var modal = document.getElementById('myModal');
             modal.style.display = "none";
         }
-        document.addEventListener('DOMContentLoaded', populateImages);
+        
+        // Function to update pagination buttons and page numbers 
+        function updatePagination() {
+            if (imageUrl.length>0) {
+                const Gallary = document.querySelector('.gallery-container');
+                Gallary.style.paddingBottom = '10px';
+                const Pagination = document.querySelector('.pagination');
+                Pagination.style.display = 'flex';
+                
+                cr_pg = document.getElementById('cr-page');
+                tl_pg = document.getElementById('tl-page');
+                cr_pg.innerHTML = currentPage;
+                tl_pg.innerHTML = imageUrl.length
+            } 
+        } 
+
+        function next_page(){
+            currentPage ++;
+            document.querySelector("#back").disabled = false;
+            populateImages(imageUrl[currentPage-1]);
+            cr_pg = document.getElementById('cr-page');
+            cr_pg.innerHTML = currentPage;
+
+            if(currentPage == imageUrl.length){
+                document.querySelector("#next").disabled = true;
+            }
+            
+        }
+        function last_page(){
+            currentPage --;
+            document.querySelector("#next").disabled = false;
+            populateImages(imageUrl[currentPage-1]);
+            cr_pg = document.getElementById('cr-page');
+            cr_pg.innerHTML = currentPage;
+
+            if(currentPage == 1){
+                document.querySelector("#back").disabled = true;
+            }
+            
+        }
+
+
+        document.addEventListener('DOMContentLoaded', populateImages(imageUrl[0]),updatePagination());
     </script>
 </body>
 </html>

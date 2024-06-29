@@ -1,0 +1,119 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.junge-regular {
+    font-family: "Junge";
+    font-weight: 800;
+    font-style: normal;
+}
+body, html {
+    font-family: 'Arial', sans-serif;
+    background-color: #1c1c1c;
+    color: white;
+    scroll-behavior: smooth;
+    position: relative;
+    /* display: block; */
+}
+html{height:100%;}
+body{min-height: 100%;}
+ /* Header */
+ header {
+    background: #121212;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+    position: fixed;
+    width: 100%;
+    height: 4rem;
+    top: 0;
+    z-index: 1000;
+}
+.menu-icon {
+    display: none;
+    color: white;
+    font-size: 30px;
+    cursor: pointer;
+}
+.logo {
+    height: 50px;
+}
+.logo:hover{
+    filter: drop-shadow(0px 0px 10px gold);
+}
+nav {
+    display: flex;
+    align-items: center;
+    overflow: hidden; /* Ensures no part of the nav is cut off */
+}
+nav a {
+    color: #FFD700; /* Golden color */
+    text-decoration: none;
+    padding: 10px 12px;
+    font-size: 16px; /* Adjust font size to ensure it fits */
+    transition: color 0.3s;
+}
+nav a:hover {
+    color: #FF4500;
+}
+ /* Header */
+
+ main{
+    height:max-content;
+    margin-bottom: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+footer {
+    text-align: center;
+    background: #121212;
+    border:1px solid gold;
+    border-width: 6px 0 0 0;
+    position: absolute; 
+    padding: 10px;
+    bottom: 0;
+    height: 50px;
+    width: 100%;
+    color:aliceblue
+}
+@media only screen and (max-width: 700px) {
+    .menu-icon {
+        display: block;
+    }
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    main .main_box .news-ticker{
+        width: inherit;
+        height: auto;
+        text-align: center;
+        text-wrap: wrap;
+    }
+    nav {
+        flex-direction: column;
+        width: 100%;
+        display: none;
+        background: #121212;
+        position: absolute;
+        top: 50px;
+        left: 0;
+        right: 0;
+    }
+    nav a {
+        display: block;
+        text-align: center;
+        padding: 15px;
+        border-top: 1px solid #2c2c2c;
+    }
+    footer{
+        width:100%;
+    }
+}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Wesean Student Federation</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500&display=swap">
+    <link rel="stylesheet" href="css/common.css">
+    <style>
+       .content {
+            flex: 1;
+            padding: 140px 20px 80px; /* Increased bottom padding */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .blog-tile {
+            width: 100%;
+            max-width: 800px;
+            background: #262626;
+            margin: 20px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+        }
+        .blog-tile img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+        }
+        .blog-tile h2, .blog-tile p {
+            margin: 10px 0;
+        }
+        .read-more, .back-to-articles {
+            padding: 10px 20px;
+            background-color: #d4af37;
+            color: #1a1a1a;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            display: inline-block;
+            margin: 10px 0;
+        }
+        .read-more:hover, .back-to-articles:hover {
+            background-color: #c5a028;
+        }
+        .hashtags {
+            font-style: italic;
+            color: #ccc;
+        }
+        .article, .page {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        .info-section {
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            margin: 20px;
+            padding: 10px;
+            background: #333;
+            border-radius: 8px;
+        }
+        .info-section a {
+            color: #c5a028; /* Lighter color for better visibility */
+            font-weight: bold;
+        }
+        .info-section a:hover {
+            color: #d4af37;
+            text-decoration: underline;
+        }
+        @media (max-width: 600px) {
+            .content, .blog-tile {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="images/logo.png" alt="WSF Logo" style="height: 50px;">
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="initiatives.html">Initiatives</a>
+            <a href="events.html">Events</a>
+            <a href="gallery.html">Gallery</a>
+            <a href="#">Blog</a>
+            <a href="contact.html">Contact</a>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="info-section">
+            <p>Interested in contributing? <strong>Write for us!</strong> Email your ideas and articles to <a href="mailto:weseanstudentfederation@proton.me">weseanstudentfederation@proton.me</a></p>
+        </div>
+        <div id="page1" class="page active">
+            <h1>Blog</h1>
+            <!-- Sample Blog Article 1 -->
+            <div class="blog-tile">
+                <img src="https://www.hudsonintegrated.com/pub/blogimages/20140305094710_blog49006_640.png" alt="Blog Image 1">
+                <h2>Welcome to Our Blog</h2>
+                <p>Welcome to the Wesean Student Federation blog, where we share updates, insights, and stories about our activities and initiatives...</p>
+                <div class="hashtags">#StudentLife #Events</div>
+                <button class="read-more" onclick="showArticle('article1')">Read More</button>
+            </div>
+            <!-- Sample Blog Article 2 -->
+            <div class="blog-tile">
+                <img src="https://www.hudsonintegrated.com/pub/blogimages/20140305094710_blog49006_640.png" alt="Event Recap Image">
+                <h2>Event Recap: Annual Gala</h2>
+                <p>Last month's Annual Gala was a huge success. Here are some highlights and reflections on the event...</p>
+                <div class="hashtags">#Gala #SuccessStories</div>
+                <button class="read-more" onclick="showArticle('article2')">Read More</button>
+            </div>
+            <!-- More tiles can be added here -->
+        </div>
+        <div id="article1" class="article">
+            <h1>Welcome to Our Blog</h1>
+            <img src="https://www.hudsonintegrated.com/pub/blogimages/20140305094710_blog49006_640.png" alt="Detailed Blog Image 1">
+            <p>Full content of the blog post about updates, insights, and stories about the Wesean Student Federation's activities and initiatives...</p>
+            <div class="hashtags">#StudentLife #Events</div>
+            <button class="back-to-articles" onclick="showPage('page1')">Back to Articles</button>
+        </div>
+        <div id="article2" class="article">
+            <h1>Event Recap: Annual Gala</h1>
+            <img src="https://www.hudsonintegrated.com/pub/blogimages/20140305094710_blog49006_640.png" alt="Detailed Event Recap Image">
+            <p>Detailed account of last month's Annual Gala...</p>
+            <div class="hashtags">#Gala #SuccessStories</div>
+            <button class="back-to-articles" onclick="showPage('page1')">Back to Articles</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2024 Wesean Student Federation - <a href="mailto:weseanstudentfederation@proton.me" style="color: red;">Email Us</a></p>
+    </footer>
+    <script>
+        function showArticle(articleId) {
+            var articles = document.querySelectorAll('.page, .article');
+            articles.forEach(function(article) {
+                article.classList.remove('active');
+            });
+            document.getElementById(articleId).classList.add('active');
+        }
+        function showPage(pageId) {
+            var pages = document.querySelectorAll('.page, .article');
+            pages.forEach(function(page) {
+                page.classList.remove('active');
+            });
+            document.getElementById(pageId).classList.add('active');
+        }
+    </script>
+</body>
+</html>
