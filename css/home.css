@@ -145,6 +145,7 @@ main .main_box{
     background-color: #121212;
     border: 2px solid gold;
     border-radius: 10px 10px 0px 0px ;
+    overflow-x: hidden;
 }
 
 .news-ticker {
@@ -357,7 +358,7 @@ footer {
     font-size: 20px;
     cursor: pointer;
 }
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 900px) {
     .menu-icon {
         display: block;
     }
@@ -407,12 +408,16 @@ footer {
     footer{
         width:100%;
     }
+    .news-ticker{
+        text-align: center;
+    }
     @keyframes ticker {
         0% {color: #ff440000; }
         50% {color: #FF4500;}
         100% {color: #ff440000; }
     }
     .Contacts{
-        padding-bottom: 7rem;
+        padding-bottom: 10rem;
+        font-size: 3rem;
     }
 }

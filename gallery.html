@@ -138,7 +138,7 @@
         .page-link:hover {
             color: #FF4500;
         }
-        @media only screen and (max-width: 768px) {
+        @media only screen and (max-width: 900px) {
             .gallery-container {
                 padding: 80px 10px 10px; /* Adjust padding for smaller screens */
             }
@@ -156,6 +156,21 @@
             }
             .close{
                 top:20px;
+            }
+            .pagination div{
+                font-size: small;
+                padding-inline: 0px;
+            }
+        }
+        @media only screen and (max-width: 900px ) and (orientation: landscape){
+            .modal-content{
+                overflow-y: scroll;
+                width:max-content;
+            }
+            .modal-photo{
+                width:300px;
+                height: auto;
+
             }
         }
     </style>

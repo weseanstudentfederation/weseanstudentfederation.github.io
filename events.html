@@ -179,7 +179,7 @@
             margin-top: 10px;
         }
         */
-        @media only screen and (max-width: 750px) {
+        @media only screen and (max-width: 900px) {
             .event-header{
                 font-size: 4rem;
             }
@@ -201,6 +201,16 @@
             }
             .clock, .sort-container, .filter-container {
                 display: none;  
+            }
+        }
+        @media only screen and (max-width: 900px ) and (orientation: landscape){
+            .modal-content {
+                width: 50%;
+                overflow-y:scroll;
+            }
+            .modal-image{
+                width: 300px;
+                height: auto;
             }
         }
     </style>
@@ -361,7 +371,7 @@
                 const eventDiv = document.createElement('div');
                 eventDiv.className = 'event';
                 eventDiv.innerHTML = `
-                    <img src="${event.image}" alt="${event.title}">
+                    <img src="${event.image}" alt="${event.title}" loading="lazy">
                     <div class="event-title">${event.title}</div>
                     <div class="event-desc">${event.shortDesc}</div>
                 `;

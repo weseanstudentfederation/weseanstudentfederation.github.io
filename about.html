@@ -164,7 +164,7 @@
             background-color: hsl(0, 0%, 100%);
             color:rgb(172, 105, 116);
         }
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: 900px) {
             .map, .region-text,.oldbg {
                 max-width: 100%; /* Full width on smaller screens */
                 margin-right: 0; /* Remove margin between items on smaller screens */
@@ -180,6 +180,10 @@
             }
             .fancy-text{
                 font-size: 1rem;
+            }
+            section:nth-last-child(1), section:nth-last-child(2), section:nth-last-child(3),.section:nth-child(2){
+                width:100%;
+                padding-inline: 25px;
             }
             .region-text{
                 /* position: static; */
@@ -203,6 +207,12 @@
             }
             section:nth-last-child(1) p{
                 display:none;
+            }
+        }
+        @media only screen and (max-width: 900px ) and ( orientation: landscape){
+            .oldbg{
+                background-image: url('images/oldbgland.png');
+                background-position: center -50px;
             }
         }
 
@@ -296,12 +306,13 @@
             'Secretary - Education': { name: 'Minkeng Lego', desc: 'Focuses on educational programs and initiatives.' },
             'Cultural Secretary': { name: 'Priyom Hazarika', desc: 'Promotes cultural awareness and organizes cultural events.' },
             'Speaker': { name: 'Arhan Yasin Ahmed', desc: 'Facilitates meetings and public speaking events.' },
-            'Treasurer': { name: 'Jonak Pratim Thakuira', desc: 'Manages finances and budgeting for the federation.' },
+            'Treasurer': { name: 'vacant', desc: 'Manages finances and budgeting for the federation.' },
             'Director of Communications': { name: 'Tsheten Chesa Bhutia', desc: 'Handles all media relations and publicity campaigns.' },
             'Public Relations Officer': { name: 'Kerik Mech', desc: 'Manages external relations and partnership opportunities.' },
             'Additional Secretary Administration': { name: 'Faith Nang Hseng', desc: 'Helps the General Secretary with administrative tasks, and steps in when the General Secretary is unavailable' },
             'Communications Coordinator': { name: 'Nonglik Claire Asem', desc: 'Assists with handling all media relations and publicity campaigns.' },
-            'Representative of High Schoolers': { name: 'Joshua Hmar', desc: 'Represents the needs and aspirations of wesean high schoolers in the general body' }
+            'Representative of High Schoolers': { name: 'Joshua Hmar', desc: 'Represents the needs and aspirations of wesean high schoolers in the general body' },
+            'Director of technical affairs': { name: 'Jonak Pratim Thakuria', desc: 'Responsible for the maintenance of online platforms and related initiatives. ' }
         };
         const rolesElement = document.getElementById('roles');
         Object.keys(rolesData).forEach(role => {

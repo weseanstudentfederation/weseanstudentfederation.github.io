@@ -16,6 +16,9 @@
             --text-bg-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black */
             --light-text-bg-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white */
         }
+        footer{
+            bottom: 0;
+        }
         body {
             transition: background-color 0.3s, color 0.3s;
             /* height:200vh; */
@@ -90,14 +93,14 @@
             border-radius: 5px;
             margin-right: 10px;
         }
-        @media (max-width: 768px) {
+        @media (max-width: 900px) {
             .tile { width: calc(50% - 40px); }
             .container{
                 padding-bottom: 60px;;
             }
             body.light-mode{
                 background-image: url('images/drag.png');
-                background-size: 90vh;
+                background-size: 80vh;
                 background-position: center center;
             }
 
