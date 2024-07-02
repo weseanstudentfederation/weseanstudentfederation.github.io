@@ -13,11 +13,18 @@
             font-weight: 800;
             margin: 60px 0 20px;
 
-            background-image: linear-gradient(to right, rgb(145, 123, 0),gold,white,gold,rgb(145, 123, 0));;
+            background-image: linear-gradient(to right, rgb(145, 123, 0),gold,white,gold,rgb(145, 123, 0));
             background-image:url('images/Gold3.png');
             background-position: center center;
             background-clip:text;
             color: hsla(0,0%,0%, 0.1);
+        }
+        @supports not (background-clip: text){
+            .gallery-header{
+                background-image: url('#');
+                color:gold;
+            }
+            
         }
         .gallery-container {
             padding: 40px 20px;
