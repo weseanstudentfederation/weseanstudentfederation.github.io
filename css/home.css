@@ -319,8 +319,7 @@ a {
     align-self: center;
     color:white;
     text-align: center;
-    /* column-gap: 3px; */
-    padding-left: 25px;
+    padding-inline: 5px;
     padding-top: 2px;
     
 }
@@ -447,14 +446,12 @@ footer {
     .news-ticker a{
         white-space: normal;
         text-wrap: balance;
+        margin-inline: 5px;
     }
     @keyframes ticker {
-        0% {color: #ff440000; }
-        50% {color: #FF4500;}
-        100% {color: #ff440000; }
+        0% {opacity: 0; }
+        50% {opacity: 100;}
+        100% {opacity: 0; }
     }
-    .Contacts{
-        /* padding-bottom: 10rem; */
-        font-size: 3rem;
-    }
+   
 }
