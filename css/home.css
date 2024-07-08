@@ -158,8 +158,9 @@ main .main_box{
     height: 50px;
     line-height: 50px;
     margin: 20px 0;
+    font-size: 1.2rem;
     /* text-wrap:wrap; */
-    animation: ticker 8s linear infinite;
+    animation: ticker 9s linear infinite;
 }
 a {
     color: inherit;
@@ -302,11 +303,11 @@ a {
     
 
     width:100%;
-    height: 20vh;
+    height: max-content;
     background-image: linear-gradient(to top, black ,#1c1c1c );
     padding-top: 60px;
     color:gold;
-    padding-bottom: 10rem;
+    padding-bottom: 1rem;
 }
 .Contacts h1{
     padding-left: 20px;
@@ -317,9 +318,11 @@ a {
     font-size: 2vh;
     align-self: center;
     color:white;
+    text-align: center;
     /* column-gap: 3px; */
     padding-left: 25px;
     padding-top: 2px;
+    
 }
 .Contact-links a{
     color:goldenrod;
@@ -451,7 +454,7 @@ footer {
         100% {color: #ff440000; }
     }
     .Contacts{
-        padding-bottom: 10rem;
+        /* padding-bottom: 10rem; */
         font-size: 3rem;
     }
 }
