@@ -1,0 +1,7 @@
+# robots.txt by WSF
+User-agent: *
+Disallow: /unused/
+Disallow: /flag/
+Disallow: /js/
+Disallow: /.vscode/
+Disallow: map.png
